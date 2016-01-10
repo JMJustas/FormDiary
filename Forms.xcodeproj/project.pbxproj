@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6E09721E1BF51E830016EDF1 /* FormDataConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E09721D1BF51E830016EDF1 /* FormDataConnector.swift */; };
+		6E42D2091C06465200DAA1FF /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42D2081C06465200DAA1FF /* FormViewController.swift */; };
+		6E4AF17B1BB46D400027DB83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4AF17A1BB46D400027DB83 /* AppDelegate.swift */; };
+		6E4AF1821BB46D400027DB83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AF1801BB46D400027DB83 /* Main.storyboard */; };
+		6E4AF1871BB46D400027DB83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AF1851BB46D400027DB83 /* LaunchScreen.storyboard */; };
+		6E500F041BCAC1DD004930E6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500EFA1BCAC1DD004930E6 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6E500F051BCAC1DD004930E6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500EFC1BCAC1DD004930E6 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6E500F061BCAC1DD004930E6 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500EFE1BCAC1DD004930E6 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6E500F071BCAC1DD004930E6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500F001BCAC1DD004930E6 /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6E500F081BCAC1DD004930E6 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500F031BCAC1DD004930E6 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6E500F0A1BCAC271004930E6 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E500F091BCAC271004930E6 /* libsqlite3.0.tbd */; };
+		6E6936851C058597008FD89C /* IdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6936841C058597008FD89C /* IdService.swift */; };
+		6E7A86B31BE16CA7006F7D63 /* NotificationActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7A86B21BE16CA7006F7D63 /* NotificationActionHandler.swift */; };
+		6E7E71431BD0373300DD72E2 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7E71421BD0373300DD72E2 /* Form.swift */; };
+		6E93862F1BD63B8500AAEE74 /* FormDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E93862E1BD63B8500AAEE74 /* FormDataManager.swift */; };
+		6EA1B7091BEE886C00A8DE76 /* FormService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA1B7081BEE886C00A8DE76 /* FormService.swift */; };
+		6EAFEAD11C316BC70059DC5B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAFEAD01C316BC70059DC5B /* Logger.swift */; };
+		6EB03BB71C01D9B900F5861E /* FormsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB03BB61C01D9B900F5861E /* FormsListController.swift */; };
+		6EB250931BD12E1900592EAB /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB250921BD12E1900592EAB /* NotificationService.swift */; };
+		6EB250D41BD3CDCC00592EAB /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB250D31BD3CDCC00592EAB /* DateUtils.swift */; };
+		6EB250D61BD4C7A700592EAB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB250D51BD4C7A700592EAB /* DataManager.swift */; };
+		6ECFD18C1C40E6B3003EC3E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6ECFD18B1C40E6B3003EC3E1 /* Assets.xcassets */; };
+		6ED1B25C1BBCEB6C0060756F /* NotificationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED1B25B1BBCEB6C0060756F /* NotificationTime.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6EB250CD1BD13B1A00592EAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E4AF16F1BB46D400027DB83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E4AF1761BB46D400027DB83;
+			remoteInfo = Forms;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6E09721D1BF51E830016EDF1 /* FormDataConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormDataConnector.swift; sourceTree = "<group>"; };
+		6E42D2081C06465200DAA1FF /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		6E4AF1771BB46D400027DB83 /* Forms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forms.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E4AF17A1BB46D400027DB83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6E4AF1811BB46D400027DB83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6E4AF1861BB46D400027DB83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6E4AF1881BB46D400027DB83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E500EF91BCAC1DD004930E6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		6E500EFA1BCAC1DD004930E6 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		6E500EFB1BCAC1DD004930E6 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		6E500EFC1BCAC1DD004930E6 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		6E500EFD1BCAC1DD004930E6 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		6E500EFE1BCAC1DD004930E6 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		6E500EFF1BCAC1DD004930E6 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		6E500F001BCAC1DD004930E6 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		6E500F011BCAC1DD004930E6 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		6E500F021BCAC1DD004930E6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		6E500F031BCAC1DD004930E6 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		6E500F091BCAC271004930E6 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		6E500F0B1BCAC315004930E6 /* Forms-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Forms-Bridging-Header.h"; sourceTree = "<group>"; };
+		6E6936841C058597008FD89C /* IdService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdService.swift; sourceTree = "<group>"; };
+		6E7A86B21BE16CA7006F7D63 /* NotificationActionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationActionHandler.swift; sourceTree = "<group>"; };
+		6E7E71421BD0373300DD72E2 /* Form.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
+		6E93862E1BD63B8500AAEE74 /* FormDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormDataManager.swift; sourceTree = "<group>"; };
+		6EA1B7081BEE886C00A8DE76 /* FormService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormService.swift; sourceTree = "<group>"; };
+		6EAFEAD01C316BC70059DC5B /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		6EB03BB61C01D9B900F5861E /* FormsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormsListController.swift; sourceTree = "<group>"; };
+		6EB250921BD12E1900592EAB /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		6EB250C11BD1362700592EAB /* FormsTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FormsTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		6EB250C81BD13B1A00592EAB /* FormsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EB250D31BD3CDCC00592EAB /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		6EB250D51BD4C7A700592EAB /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		6ECFD18B1C40E6B3003EC3E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Forms/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		6ED1B25B1BBCEB6C0060756F /* NotificationTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTime.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6E4AF1741BB46D400027DB83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E500F0A1BCAC271004930E6 /* libsqlite3.0.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EB250C51BD13B1A00592EAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E09721C1BF51E6F0016EDF1 /* Connectors */ = {
+			isa = PBXGroup;
+			children = (
+				6E09721D1BF51E830016EDF1 /* FormDataConnector.swift */,
+			);
+			name = Connectors;
+			sourceTree = "<group>";
+		};
+		6E4AF16E1BB46D400027DB83 = {
+			isa = PBXGroup;
+			children = (
+				6E500F0B1BCAC315004930E6 /* Forms-Bridging-Header.h */,
+				6E500EF81BCAC1DD004930E6 /* fmdb */,
+				6ED1B2551BBCE7B70060756F /* Frameworks */,
+				6E4AF1791BB46D400027DB83 /* Forms */,
+				6E4AF1781BB46D400027DB83 /* Products */,
+				6EB250C11BD1362700592EAB /* FormsTests-Bridging-Header.h */,
+			);
+			sourceTree = "<group>";
+		};
+		6E4AF1781BB46D400027DB83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E4AF1771BB46D400027DB83 /* Forms.app */,
+				6EB250C81BD13B1A00592EAB /* FormsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6E4AF1791BB46D400027DB83 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				6ECFD18B1C40E6B3003EC3E1 /* Assets.xcassets */,
+				6E6936831C058226008FD89C /* Persistence */,
+				6E09721C1BF51E6F0016EDF1 /* Connectors */,
+				6EB250D21BD3CDBF00592EAB /* Utils */,
+				6ED1B2581BBCE8AF0060756F /* Models */,
+				6E94058A1BBAD9D4004D1FA2 /* Services */,
+				6E4AF18E1BB46E550027DB83 /* ViewControllers */,
+				6E4AF1801BB46D400027DB83 /* Main.storyboard */,
+				6E4AF1851BB46D400027DB83 /* LaunchScreen.storyboard */,
+				6E4AF1881BB46D400027DB83 /* Info.plist */,
+			);
+			path = Forms;
+			sourceTree = "<group>";
+		};
+		6E4AF18E1BB46E550027DB83 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6E4AF17A1BB46D400027DB83 /* AppDelegate.swift */,
+				6EB03BB61C01D9B900F5861E /* FormsListController.swift */,
+				6E42D2081C06465200DAA1FF /* FormViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6E500EF81BCAC1DD004930E6 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				6E500EF91BCAC1DD004930E6 /* FMDatabase.h */,
+				6E500EFA1BCAC1DD004930E6 /* FMDatabase.m */,
+				6E500EFB1BCAC1DD004930E6 /* FMDatabaseAdditions.h */,
+				6E500EFC1BCAC1DD004930E6 /* FMDatabaseAdditions.m */,
+				6E500EFD1BCAC1DD004930E6 /* FMDatabasePool.h */,
+				6E500EFE1BCAC1DD004930E6 /* FMDatabasePool.m */,
+				6E500EFF1BCAC1DD004930E6 /* FMDatabaseQueue.h */,
+				6E500F001BCAC1DD004930E6 /* FMDatabaseQueue.m */,
+				6E500F011BCAC1DD004930E6 /* FMDB.h */,
+				6E500F021BCAC1DD004930E6 /* FMResultSet.h */,
+				6E500F031BCAC1DD004930E6 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		6E6936831C058226008FD89C /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				6EB250D51BD4C7A700592EAB /* DataManager.swift */,
+				6E93862E1BD63B8500AAEE74 /* FormDataManager.swift */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
+		6E94058A1BBAD9D4004D1FA2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6EA1B7081BEE886C00A8DE76 /* FormService.swift */,
+				6EB250921BD12E1900592EAB /* NotificationService.swift */,
+				6E7A86B21BE16CA7006F7D63 /* NotificationActionHandler.swift */,
+				6E6936841C058597008FD89C /* IdService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		6EB250D21BD3CDBF00592EAB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6EB250D31BD3CDCC00592EAB /* DateUtils.swift */,
+				6EAFEAD01C316BC70059DC5B /* Logger.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		6ED1B2551BBCE7B70060756F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E500F091BCAC271004930E6 /* libsqlite3.0.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6ED1B2581BBCE8AF0060756F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6ED1B25B1BBCEB6C0060756F /* NotificationTime.swift */,
+				6E7E71421BD0373300DD72E2 /* Form.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6E4AF1761BB46D400027DB83 /* Forms */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E4AF18B1BB46D400027DB83 /* Build configuration list for PBXNativeTarget "Forms" */;
+			buildPhases = (
+				6E4AF1731BB46D400027DB83 /* Sources */,
+				6E4AF1741BB46D400027DB83 /* Frameworks */,
+				6E4AF1751BB46D400027DB83 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Forms;
+			productName = Forms;
+			productReference = 6E4AF1771BB46D400027DB83 /* Forms.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6EB250C71BD13B1A00592EAB /* FormsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EB250CF1BD13B1A00592EAB /* Build configuration list for PBXNativeTarget "FormsTests" */;
+			buildPhases = (
+				6EB250C41BD13B1A00592EAB /* Sources */,
+				6EB250C51BD13B1A00592EAB /* Frameworks */,
+				6EB250C61BD13B1A00592EAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6EB250CE1BD13B1A00592EAB /* PBXTargetDependency */,
+			);
+			name = FormsTests;
+			productName = FormsTests;
+			productReference = 6EB250C81BD13B1A00592EAB /* FormsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6E4AF16F1BB46D400027DB83 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = jm;
+				TargetAttributes = {
+					6E4AF1761BB46D400027DB83 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 248L99P2B9;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					6EB250C71BD13B1A00592EAB = {
+						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 248L99P2B9;
+						TestTargetID = 6E4AF1761BB46D400027DB83;
+					};
+				};
+			};
+			buildConfigurationList = 6E4AF1721BB46D400027DB83 /* Build configuration list for PBXProject "Forms" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6E4AF16E1BB46D400027DB83;
+			productRefGroup = 6E4AF1781BB46D400027DB83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6E4AF1761BB46D400027DB83 /* Forms */,
+				6EB250C71BD13B1A00592EAB /* FormsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6E4AF1751BB46D400027DB83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E4AF1871BB46D400027DB83 /* LaunchScreen.storyboard in Resources */,
+				6ECFD18C1C40E6B3003EC3E1 /* Assets.xcassets in Resources */,
+				6E4AF1821BB46D400027DB83 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EB250C61BD13B1A00592EAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E4AF1731BB46D400027DB83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EAFEAD11C316BC70059DC5B /* Logger.swift in Sources */,
+				6E42D2091C06465200DAA1FF /* FormViewController.swift in Sources */,
+				6EB250D61BD4C7A700592EAB /* DataManager.swift in Sources */,
+				6EB250D41BD3CDCC00592EAB /* DateUtils.swift in Sources */,
+				6E4AF17B1BB46D400027DB83 /* AppDelegate.swift in Sources */,
+				6EB250931BD12E1900592EAB /* NotificationService.swift in Sources */,
+				6E93862F1BD63B8500AAEE74 /* FormDataManager.swift in Sources */,
+				6E500F051BCAC1DD004930E6 /* FMDatabaseAdditions.m in Sources */,
+				6E500F081BCAC1DD004930E6 /* FMResultSet.m in Sources */,
+				6E7A86B31BE16CA7006F7D63 /* NotificationActionHandler.swift in Sources */,
+				6E500F061BCAC1DD004930E6 /* FMDatabasePool.m in Sources */,
+				6EA1B7091BEE886C00A8DE76 /* FormService.swift in Sources */,
+				6E7E71431BD0373300DD72E2 /* Form.swift in Sources */,
+				6E6936851C058597008FD89C /* IdService.swift in Sources */,
+				6E09721E1BF51E830016EDF1 /* FormDataConnector.swift in Sources */,
+				6E500F071BCAC1DD004930E6 /* FMDatabaseQueue.m in Sources */,
+				6ED1B25C1BBCEB6C0060756F /* NotificationTime.swift in Sources */,
+				6EB03BB71C01D9B900F5861E /* FormsListController.swift in Sources */,
+				6E500F041BCAC1DD004930E6 /* FMDatabase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EB250C41BD13B1A00592EAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6EB250CE1BD13B1A00592EAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E4AF1761BB46D400027DB83 /* Forms */;
+			targetProxy = 6EB250CD1BD13B1A00592EAB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6E4AF1801BB46D400027DB83 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E4AF1811BB46D400027DB83 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6E4AF1851BB46D400027DB83 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E4AF1861BB46D400027DB83 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6E4AF1891BB46D400027DB83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6E4AF18A1BB46D400027DB83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6E4AF18C1BB46D400027DB83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
+				ENABLE_TESTABILITY = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Forms/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jm.Forms;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Forms-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6E4AF18D1BB46D400027DB83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Justinas Marcinka (D9G52G32HE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Justinas Marcinka (D9G52G32HE)";
+				DEFINES_MODULE = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
+				ENABLE_TESTABILITY = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Forms/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jm.Forms;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "Forms-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		6EB250D01BD13B1A00592EAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FormsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jm.FormsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Forms.app/Forms";
+			};
+			name = Debug;
+		};
+		6EB250D11BD13B1A00592EAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FormsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jm.FormsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Forms.app/Forms";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6E4AF1721BB46D400027DB83 /* Build configuration list for PBXProject "Forms" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E4AF1891BB46D400027DB83 /* Debug */,
+				6E4AF18A1BB46D400027DB83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E4AF18B1BB46D400027DB83 /* Build configuration list for PBXNativeTarget "Forms" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E4AF18C1BB46D400027DB83 /* Debug */,
+				6E4AF18D1BB46D400027DB83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6EB250CF1BD13B1A00592EAB /* Build configuration list for PBXNativeTarget "FormsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EB250D01BD13B1A00592EAB /* Debug */,
+				6EB250D11BD13B1A00592EAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6E4AF16F1BB46D400027DB83 /* Project object */;
+}

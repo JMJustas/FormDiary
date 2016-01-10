@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
+    <entity name="Form" representedClassName="Form" syncable="YES">
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" syncable="YES"/>
+    </entity>
+    <entity name="NotificationTime" syncable="YES"/>
+    <elements>
+        <element name="Form" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="NotificationTime" positionX="-54" positionY="0" width="128" height="45"/>
+    </elements>
+</model>
