@@ -30,6 +30,7 @@ class FormsListController: UITableViewController {
         appDelegate.formsList = self
         indicator.center = view.center
         view.addSubview(indicator)
+
         
     }
  
@@ -55,7 +56,7 @@ class FormsListController: UITableViewController {
         let lastUpdate = defaults.doubleForKey("lastSyncDate")
         
         let now = NSDate().timeIntervalSince1970
-        let shouldSync = (now - lastUpdate) > SYNC_INTERVAL
+        let shouldSync = false // (now - lastUpdate) > SYNC_INTERVAL
         
         
         if forceSync || shouldSync {
@@ -106,8 +107,10 @@ class FormsListController: UITableViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated);
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        Logger.instance.log("Will appear")
+
         reload()
     }
     
