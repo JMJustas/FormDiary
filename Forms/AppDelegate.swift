@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let createTestData = false
     let loadDataOnStartup = false
     let testScheduling = false
+    let logger = Logger.instance
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -67,14 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if (testScheduling) {
-            do {
-                let time = try NotificationTime(timestamp: "18:50:we")
-                let id = "someid"
-                notificationService.cancelNotifications(id)
-                notificationService.schedule(id, time: time, fromDate: NSDate(timeIntervalSinceNow: 0))
-            } catch {
-                
-            }
+            NSLog("scheduling...")
+            let id = "4"
+            notificationService.scheduleNotification(id, when: NSDate(timeIntervalSinceNow: 3))
         }
         
         if loadDataOnStartup {
@@ -96,32 +92,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification)  {
         let handler = NotificationActionHandler(formId: notification.userInfo!["formId"] as! String)
-        if objc_getClass("UIAlertController") == nil  {
-            //TODO clickedbuttonatIndex method
-            let alert = UIAlertView()
-            alert.delegate = handler
-            alert.title = alertTitle
-            alert.message = notification.alertBody
-            alert.addButtonWithTitle(actionFill)
-            alert.addButtonWithTitle(actionPostpone)
-            alert.addButtonWithTitle(actionSkip)
-            alert.show()
-            
-        } else {
-            let alertController = UIAlertController(title: alertTitle, message: nil, preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: actionFill, style: .Default, handler: {(alert: UIAlertAction!) in handler.loadForm()}))
-            alertController.addAction(UIAlertAction(title: actionPostpone, style: .Default, handler: {(alert: UIAlertAction!) in handler.postpone()}))
-            alertController.addAction(UIAlertAction(title: actionSkip, style: .Default, handler: {(alert: UIAlertAction!) in handler.skip()}))
-            self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
-            //TODO create notification handler
-        }
+  
+        let alertController = UIAlertController(title: alertTitle, message: nil, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: actionFill, style: .Default, handler: {(alert: UIAlertAction!) in handler.loadForm()}))
+        alertController.addAction(UIAlertAction(title: actionPostpone, style: .Default, handler: {(alert: UIAlertAction!) in handler.postpone()}))
+        alertController.addAction(UIAlertAction(title: actionSkip, style: .Default, handler: {(alert: UIAlertAction!) in handler.skip()}))
+        self.window!.rootViewController!.presentViewController(alertController, animated: true, completion: nil)
+    
 
     }
     
 
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-        if let actionId = identifier, formId = notification.userInfo?["formId"] as? String {
+            logger.log("without UI!!!")
+         if let actionId = identifier, formId = notification.userInfo?["formId"] as? String {
             let handler = NotificationActionHandler(formId: formId)
             switch (actionId) {
                 case "FILL_FORM":
