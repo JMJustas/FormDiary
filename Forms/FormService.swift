@@ -44,11 +44,11 @@ class FormService {
     }
     
     
-    func joinSurvey(formArg: Form, callback: (Form?) -> Void) {
+    func joinSurvey(id: String, callback: (Form?) -> Void) {
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
 
             var res: Form?;
-            if let form = self.db.findForm(formArg.id){
+            if let form = self.db.findForm(id){
                 form.accepted = true;
                 let date = NSDate()
                 self.notificationService.cancelNotifications(form.id)
@@ -56,7 +56,7 @@ class FormService {
                     self.notificationService.schedule(form.id, time: time, fromDate: date)
                 }
                 res = self.db.saveForm(form)
-
+                NSUserDefaults.standardUserDefaults().setValue(id, forKey: "ActiveSurvey")
             }
             dispatch_async(dispatch_get_main_queue()) {
                 callback(res)
@@ -64,16 +64,18 @@ class FormService {
         }
     }
     
-    func leaveSurvey(formArg: Form, callback: (Form?) -> Void) {
+    func leaveSurvey(id: String, callback: (Form?) -> Void) {
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             
             var res: Form?;
-            if let form = self.db.findForm(formArg.id){
+            if let form = self.db.findForm(id){
                 form.accepted = false;
                 self.notificationService.cancelNotifications(form.id)
                 res = self.db.saveForm(form)
+                NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "ActiveSurvey")
+
             } else {
-                self.logger.log("form with id \(formArg.id) not found!")
+                self.logger.log("form with id \(id) not found!")
             }
             
             dispatch_async(dispatch_get_main_queue()) {
@@ -81,6 +83,32 @@ class FormService {
             }
         }
     }
+    
+    func load(id: String, callback: (Form?) -> Void) {
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            let form = self.db.findForm(id)
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(form)
+            }
+        }
+    }
+    
+    func getActiveSurveyId() -> String? {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.stringForKey("ActiveSurvey")
+    }
+    
+    func loadActive(callback: (Form?) -> Void) {
+        if let id = self.getActiveSurveyId() {
+            self.load(id, callback: callback)
+        } else {
+            dispatch_async(dispatch_get_main_queue()) {
+                callback(nil)
+            }
+        }
+    }
+
+
 
     
     

@@ -10,11 +10,8 @@ import Foundation
 import UIKit
 
 class FormViewController: UIViewController {
-    var form: Form!
-    
     let TEXT_JOIN = "Join survey"
     let TEXT_LEAVE = "Leave survey"
-    
     @IBOutlet var descriptionView: UITextView!
     @IBOutlet var button: UIButton!
     
@@ -25,12 +22,16 @@ class FormViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        self.title = form.title
-        self.descriptionView.text = form.description;
-        self.button.enabled = false
-        initButton(form.accepted)
+        formService.loadActive({
+            form in
+            self.title = form?.title
+            self.descriptionView.text = form?.description;
+            self.button.enabled = false
+            self.initButton(true)
+        })
+        
     }
-    
+    //TODO reduce complexity
     func initButton(isParticipating: Bool) {
         let title = isParticipating ?  TEXT_LEAVE : TEXT_JOIN
         let textColor = isParticipating ? UIColor.redColor() : UIColor.blueColor()
@@ -44,18 +45,14 @@ class FormViewController: UIViewController {
     @IBAction func onSubmit(sender: AnyObject) {
         button.enabled = false
         let handler: (Form?) -> Void = {form in
-            if let updatedForm = form {
-                self.form = updatedForm
-            } else {
+            self.button.enabled = true
+            if form == nil {
                 NSLog("ERROR: Failed to update form data when joining or leaving survey!")
+            } else {
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
-            self.initButton(self.form.accepted)
         }
-        
-        if (form.accepted) {
-            formService.leaveSurvey(self.form, callback: handler)
-        } else {
-            formService.joinSurvey(self.form, callback: handler)
-        }
+        let formId = formService.getActiveSurveyId()!
+        formService.leaveSurvey(formId, callback: handler)
     }
 }

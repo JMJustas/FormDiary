@@ -91,6 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification)  {
+        logger.log("got notification \(notification)")
         let handler = NotificationActionHandler(formId: notification.userInfo!["formId"] as! String)
   
         let alertController = UIAlertController(title: alertTitle, message: nil, preferredStyle: .Alert)
