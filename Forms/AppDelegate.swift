@@ -92,15 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification)  {
         logger.log("got notification \(notification)")
-        let handler = NotificationActionHandler(formId: notification.userInfo!["formId"] as! String)
-  
-        let alertController = UIAlertController(title: alertTitle, message: nil, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: actionFill, style: .Default, handler: {(alert: UIAlertAction!) in handler.loadForm()}))
-        alertController.addAction(UIAlertAction(title: actionPostpone, style: .Default, handler: {(alert: UIAlertAction!) in handler.postpone()}))
-        alertController.addAction(UIAlertAction(title: actionSkip, style: .Default, handler: {(alert: UIAlertAction!) in handler.skip()}))
-        self.window!.rootViewController!.presentViewController(alertController, animated: true, completion: nil)
-    
-
     }
     
 

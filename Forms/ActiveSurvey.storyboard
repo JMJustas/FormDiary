@@ -24,46 +24,56 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3S-Ir-KSC">
+                            <view contentMode="scaleToFill" restorationIdentifier="buttonHolder" translatesAutoresizingMaskIntoConstraints="NO" id="a3S-Ir-KSC" userLabel="Button view">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0A-I4-NRZ">
-                                        <rect key="frame" x="18" y="12" width="564" height="26"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0A-I4-NRZ">
+                                        <rect key="frame" x="0.0" y="7" width="600" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Leave survey">
+                                            <color key="titleColor" red="1" green="0.10716513551998519" blue="0.18097877812974805" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="onSubmit:" destination="rSg-yd-rS2" eventType="touchUpInside" id="gQY-1r-pD6"/>
+                                            <action selector="onLeaveSurveyClick:" destination="rSg-yd-rS2" eventType="touchUpInside" id="8Pg-1P-xeD"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="BXj-3a-gg2"/>
-                                    <constraint firstItem="Y0A-I4-NRZ" firstAttribute="top" secondItem="a3S-Ir-KSC" secondAttribute="topMargin" constant="4" id="X9F-S4-1tD"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="Y0A-I4-NRZ" secondAttribute="bottom" constant="4" id="XYN-6S-CD6"/>
-                                    <constraint firstItem="Y0A-I4-NRZ" firstAttribute="leading" secondItem="a3S-Ir-KSC" secondAttribute="leadingMargin" constant="10" id="ig8-f9-7sz"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Y0A-I4-NRZ" secondAttribute="trailing" constant="10" id="kxR-tn-6ct"/>
+                                    <constraint firstItem="Y0A-I4-NRZ" firstAttribute="centerX" secondItem="a3S-Ir-KSC" secondAttribute="centerX" id="2OH-Kz-SC0"/>
+                                    <constraint firstItem="Y0A-I4-NRZ" firstAttribute="centerY" secondItem="a3S-Ir-KSC" secondAttribute="centerY" id="Er2-y9-foi"/>
+                                    <constraint firstItem="Y0A-I4-NRZ" firstAttribute="leading" secondItem="a3S-Ir-KSC" secondAttribute="leading" id="NRR-fE-6hm"/>
+                                    <constraint firstAttribute="height" constant="50" id="a2s-X7-nQm"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y0A-I4-NRZ" secondAttribute="trailing" id="gxf-iy-dOb"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next survey at: 22:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqg-rP-A2e">
+                                <rect key="frame" x="218" y="289" width="164" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Zqg-rP-A2e" firstAttribute="centerY" secondItem="EKE-nh-PtA" secondAttribute="centerY" id="8dw-Fh-SpS"/>
                             <constraint firstItem="pr9-nt-fHM" firstAttribute="top" secondItem="EKE-nh-PtA" secondAttribute="topMargin" id="B4m-pQ-wTM"/>
                             <constraint firstItem="pr9-nt-fHM" firstAttribute="leading" secondItem="EKE-nh-PtA" secondAttribute="leadingMargin" constant="-20" id="G9m-Bf-562"/>
-                            <constraint firstItem="a3S-Ir-KSC" firstAttribute="centerX" secondItem="EKE-nh-PtA" secondAttribute="centerX" id="QGH-sb-ekQ"/>
-                            <constraint firstItem="a3S-Ir-KSC" firstAttribute="bottom" secondItem="EKE-nh-PtA" secondAttribute="bottomMargin" id="Z6S-O9-Qml"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="a3S-Ir-KSC" secondAttribute="trailing" constant="-20" id="ehb-YM-DKW"/>
-                            <constraint firstItem="a3S-Ir-KSC" firstAttribute="top" secondItem="pr9-nt-fHM" secondAttribute="bottom" id="nwf-mZ-HOe"/>
-                            <constraint firstItem="a3S-Ir-KSC" firstAttribute="leading" secondItem="EKE-nh-PtA" secondAttribute="leadingMargin" constant="-20" id="ox3-Eb-tDW"/>
+                            <constraint firstItem="Zqg-rP-A2e" firstAttribute="centerX" secondItem="EKE-nh-PtA" secondAttribute="centerX" id="P3w-5B-Zif"/>
+                            <constraint firstItem="Jjj-zd-gE6" firstAttribute="top" secondItem="a3S-Ir-KSC" secondAttribute="bottom" id="PiM-NV-aWr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a3S-Ir-KSC" secondAttribute="trailing" constant="-20" id="bgP-oK-ctC"/>
+                            <constraint firstItem="a3S-Ir-KSC" firstAttribute="leading" secondItem="EKE-nh-PtA" secondAttribute="leadingMargin" constant="-20" id="gQb-l5-qMP"/>
+                            <constraint firstItem="a3S-Ir-KSC" firstAttribute="top" secondItem="pr9-nt-fHM" secondAttribute="bottom" id="h2J-4B-f4C"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pr9-nt-fHM" secondAttribute="trailing" constant="-20" id="v5K-Ji-bKH"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button" destination="Y0A-I4-NRZ" id="yyJ-Uh-tFy"/>
+                        <outlet property="button" destination="Y0A-I4-NRZ" id="ira-Ix-Y1k"/>
                         <outlet property="descriptionView" destination="pr9-nt-fHM" id="KLq-Rl-FuT"/>
                     </connections>
                 </viewController>
