@@ -44,7 +44,7 @@
                             </textField>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVL-RY-rMD">
                                 <rect key="frame" x="213" y="335" width="175" height="34"/>
-                                <color key="backgroundColor" red="0.17266589491705031" green="0.29511563534268281" blue="0.58270615183246077" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.17254901960784313" green="0.29411764705882354" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="175" id="AZ8-2T-iLW"/>
                                     <constraint firstAttribute="height" constant="34" id="cLm-Lr-H2a"/>

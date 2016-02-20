@@ -12,6 +12,7 @@
 		6E4AF17B1BB46D400027DB83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4AF17A1BB46D400027DB83 /* AppDelegate.swift */; };
 		6E4AF1821BB46D400027DB83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AF1801BB46D400027DB83 /* Main.storyboard */; };
 		6E4AF1871BB46D400027DB83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AF1851BB46D400027DB83 /* LaunchScreen.storyboard */; };
+		6E4EF3E41C788BA700991A0C /* LocalNotificationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4EF3E31C788BA700991A0C /* LocalNotificationUtils.swift */; };
 		6E500F041BCAC1DD004930E6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500EFA1BCAC1DD004930E6 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6E500F051BCAC1DD004930E6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500EFC1BCAC1DD004930E6 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6E500F061BCAC1DD004930E6 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500EFE1BCAC1DD004930E6 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -54,6 +55,7 @@
 		6E4AF1811BB46D400027DB83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E4AF1861BB46D400027DB83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E4AF1881BB46D400027DB83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E4EF3E31C788BA700991A0C /* LocalNotificationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationUtils.swift; sourceTree = "<group>"; };
 		6E500EF91BCAC1DD004930E6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		6E500EFA1BCAC1DD004930E6 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		6E500EFB1BCAC1DD004930E6 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				6EB250D31BD3CDCC00592EAB /* DateUtils.swift */,
 				6EAFEAD01C316BC70059DC5B /* Logger.swift */,
+				6E4EF3E31C788BA700991A0C /* LocalNotificationUtils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				6E500F061BCAC1DD004930E6 /* FMDatabasePool.m in Sources */,
 				6EC80F381C6E42900058699A /* SurveySearchController.swift in Sources */,
 				6EA1B7091BEE886C00A8DE76 /* FormService.swift in Sources */,
+				6E4EF3E41C788BA700991A0C /* LocalNotificationUtils.swift in Sources */,
 				6E7E71431BD0373300DD72E2 /* Form.swift in Sources */,
 				6E6936851C058597008FD89C /* IdService.swift in Sources */,
 				6E09721E1BF51E830016EDF1 /* FormDataConnector.swift in Sources */,

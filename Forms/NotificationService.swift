@@ -69,20 +69,40 @@ class NotificationService {
     }
     
     func cancelNotifications(id: String) {
-        let app = UIApplication.sharedApplication()
         logger.log("cancelling notifications for form \(id)")
+        let app = UIApplication.sharedApplication()
+        self.getNotifications(id).forEach({notification in app.cancelLocalNotification(notification)})
+    }
+
+
+    func getNotifications(id: String) -> [UILocalNotification] {
+        let app = UIApplication.sharedApplication()
         if let notifications = app.scheduledLocalNotifications {
-            notifications.filter({
+            return notifications.filter({
                 notification in
-                    if let info = notification.userInfo as? [String:AnyObject], formId = info["formId"] as? String {
-                        return id == formId
-                    }
-                    return false
-            }).forEach({
-                notification in
-                    app.cancelLocalNotification(notification)
+                if let info = notification.userInfo as? [String:AnyObject], formId = info["formId"] as? String {
+                    return id == formId
+                }
+                return false
             })
         }
+        return []
+    }
+    
+    func nextNotificationDate(id: String) -> NSDate? {
+        let notifications = self.getNotifications(id)
+        var result: NSDate? = nil
+        let now = NSDate()
+        for notification in notifications {
+            if let next = notification.nextFireDate() where next.isAfter(now) {
+                if let res = result {
+                    result = next.isBefore(res) ? next : result
+                } else {
+                    result = next
+                }
+            }
+        }
+        return result
     }
 
 

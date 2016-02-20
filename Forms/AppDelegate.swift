@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let createDb = false
     let createTestData = false
     let loadDataOnStartup = false
-    let testScheduling = false
+    let testScheduling = true
     let logger = Logger.instance
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -71,6 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("scheduling...")
             let id = "4"
             notificationService.scheduleNotification(id, when: NSDate(timeIntervalSinceNow: 3))
+            NSLog("next: \(notificationService.nextNotificationDate("4"))")
         }
         
         if loadDataOnStartup {
