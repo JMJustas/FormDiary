@@ -88,7 +88,7 @@ class NotificationService {
         }
         return []
     }
-    
+//    loads date when the next notification will be fired for given form
     func nextNotificationDate(id: String) -> NSDate? {
         let notifications = self.getNotifications(id)
         var result: NSDate? = nil
@@ -99,6 +99,22 @@ class NotificationService {
                     result = next.isBefore(res) ? next : result
                 } else {
                     result = next
+                }
+            }
+        }
+        return result
+    }
+    
+//    loads last fired notification date for given form
+    func lastNotificationDate(id: String) -> NSDate? {
+        let notifications = self.getNotifications(id)
+        var result: NSDate? = nil
+        for notification in notifications {
+            if let last = notification.lastFireDate() {
+                if let res = result {
+                    result = last.isAfter(res) ? last : result
+                } else {
+                    result = last
                 }
             }
         }

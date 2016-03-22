@@ -22,7 +22,20 @@ extension UILocalNotification {
         } else {
             return nil
         }
-        
-        
+    }
+    func lastFireDate () -> NSDate? {
+        let now = NSDate()
+        if let fireDate = self.fireDate {
+            if fireDate.isAfter(now) {
+                return nil
+            }
+            var result = NSDate(timeIntervalSince1970: fireDate.timeIntervalSince1970)
+            while (!(result + (1, self.repeatInterval)).isAfter(now)) {
+                result += (1, self.repeatInterval)
+            }
+            return result;
+        } else {
+            return nil
+        }
     }
 }
