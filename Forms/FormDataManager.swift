@@ -64,13 +64,13 @@ class FormDataManager {
             form.postponeLimit,
             form.postponeInterval,
             form.accepted ? 1 : 0,
+            form.activeTime,
             form.id
         ]
 
         let stmt = findForm(form.id) == nil ?
-            "INSERT INTO forms (title, description, url, notification_times, postpone_count, postpone_limit, postpone_interval, accepted, id) VALUES (?,?,?,?,?,?,?,?,?)":
-            "UPDATE forms SET title=?, description=?, url=?, notification_times=?, postpone_count=?, postpone_limit=?, postpone_interval=?, accepted=? where id=?";
-//        NSLog("Writing form \(form.id) on thread \(NSThread.currentThread())")
+            "INSERT INTO forms (title, description, url, notification_times, postpone_count, postpone_limit, postpone_interval, accepted, active_time, id) VALUES (?,?,?,?,?,?,?,?,?,?)":
+            "UPDATE forms SET title=?, description=?, url=?, notification_times=?, postpone_count=?, postpone_limit=?, postpone_interval=?, accepted=?, active_time=? where id=?";
         var res: Form?
         dbManager.executeInQueue { db in
            res = db.executeUpdate(stmt, withArgumentsInArray: args as [AnyObject]) ? form : nil

@@ -37,7 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         category.identifier = "FORM_CATEGORY"
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories:[category]))
         
-        dataManager.initDb(createDb);
+        if dataManager.initDb(createDb) {
+            notificationService.cancelAll()
+            if let activeForm = formService.getActiveSurveyId() {
+                formService.leaveSurvey(activeForm, callback: { form in })
+            }
+        };
         
         if createTestData {
             insertTestData()

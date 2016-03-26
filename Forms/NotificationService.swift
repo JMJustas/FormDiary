@@ -75,6 +75,12 @@ class NotificationService {
         let app = UIApplication.sharedApplication()
         self.getNotifications(id).forEach({notification in app.cancelLocalNotification(notification)})
     }
+    
+    func cancelAll() {
+        logger.log("cancelling all notifications")
+        let app = UIApplication.sharedApplication()
+        app.scheduledLocalNotifications?.forEach({notification in app.cancelLocalNotification(notification)})
+    }
 
 
     func getNotifications(id: String) -> [UILocalNotification] {

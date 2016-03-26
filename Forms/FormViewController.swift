@@ -29,8 +29,6 @@ class FormViewController: UIViewController {
     
     let formService = FormService.instance
     
-    let FORM_ACTIVE_TIME:NSTimeInterval = 60
-    
     var nextNotification: NSDate?
     var lastNotification: NSDate?
     var timer: NSTimer?
@@ -102,7 +100,7 @@ class FormViewController: UIViewController {
         var showActions = false
         //TODO move to formService
         if let lastNotification = self.lastNotification, let form = self.form {
-            let activeUntil = NSDate(timeInterval: self.FORM_ACTIVE_TIME, sinceDate: lastNotification)
+            let activeUntil = NSDate(timeInterval: Double(form.activeTime), sinceDate: lastNotification)
             let now = NSDate()
             if activeUntil.isAfter(now) {
                 NSLog("Form \(form.id) is active until: \(activeUntil)")

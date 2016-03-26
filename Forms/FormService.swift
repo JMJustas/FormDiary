@@ -65,6 +65,11 @@ class FormService {
     }
     
     func leaveSurvey(id: String, callback: (Form?) -> Void) {
+        if self.getActiveSurveyId() != id {
+            logger.log("FORM with id \(id) is not active")
+            return
+        }
+
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             
             var res: Form?;
@@ -72,12 +77,13 @@ class FormService {
                 form.accepted = false;
                 self.notificationService.cancelNotifications(form.id)
                 res = self.db.saveForm(form)
-                NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "ActiveSurvey")
-
             } else {
                 self.logger.log("form with id \(id) not found!")
             }
             
+            NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "ActiveSurvey")
+       
+
             dispatch_async(dispatch_get_main_queue()) {
                 callback(res)
             }
