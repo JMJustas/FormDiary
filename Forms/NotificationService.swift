@@ -17,13 +17,14 @@ class NotificationService {
     
     
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    var lastNotification: NSDate? = nil
 
-    func scheduleNotification(formId: String, when: NSDate, interval: NSCalendarUnit? = nil) {
+    func scheduleNotification(formId: String, when: NSDate, interval: NSCalendarUnit? = nil, postponed: Bool = false) {
         let localNotification = UILocalNotification()
         localNotification.fireDate = when
         localNotification.alertBody = alertTitle
         localNotification.soundName = UILocalNotificationDefaultSoundName // play default sound
-        localNotification.userInfo = ["formId": formId ]
+        localNotification.userInfo = ["formId": formId, "postponed": postponed]
         localNotification.category = "FORM_CATEGORY"
         if let repeatAt = interval {
             localNotification.repeatInterval = repeatAt
@@ -64,7 +65,8 @@ class NotificationService {
     
     func schedulePostponed(form: Form) {
         scheduleNotification(form.id,
-            when: NSDate(timeIntervalSinceNow: NSTimeInterval(form.postponeInterval))
+            when: NSDate(timeIntervalSinceNow: NSTimeInterval(form.postponeInterval)),
+            postponed: true
         )
     }
     
@@ -107,18 +109,32 @@ class NotificationService {
     
 //    loads last fired notification date for given form
     func lastNotificationDate(id: String) -> NSDate? {
-        let notifications = self.getNotifications(id)
-        var result: NSDate? = nil
-        for notification in notifications {
-            if let last = notification.lastFireDate() {
-                if let res = result {
-                    result = last.isAfter(res) ? last : result
-                } else {
-                    result = last
-                }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if self.lastNotification == nil {
+            let secondsSinceEpoch = defaults.doubleForKey("lastNotificationTime")
+            if secondsSinceEpoch > 0 {
+                self.lastNotification = NSDate(timeIntervalSince1970: secondsSinceEpoch)
+            } else {
+                return nil
             }
         }
-        return result
+        return self.lastNotification
+
+    }
+    
+    func markNotification(notification: UILocalNotification) {
+        if let info = notification.userInfo as? [String:AnyObject], formId = info["formId"] as? String, postponed = info["postponed"] as? Bool {
+            if (postponed) {
+                NSLog("Postponed notification for form \(formId) won't extend survey active time. Ignoring...")
+                return
+            }
+            self.lastNotification = NSDate()
+            NSUserDefaults.standardUserDefaults().setDouble(self.lastNotification!.timeIntervalSince1970, forKey: "lastNotificationTime")
+        } else {
+            NSLog("Notification had missing data: \(notification.userInfo)")
+        }
+        
+
     }
 
 

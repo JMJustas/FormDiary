@@ -27,7 +27,6 @@
                                 </constraints>
                                 <state key="normal" title="Remind me later">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onPostponelick:" destination="rSg-yd-rS2" eventType="touchUpInside" id="rnp-lx-Wd9"/>
@@ -81,7 +80,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Next notification at: 22:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veW-wU-w0w">
                                 <rect key="frame" x="20" y="78" width="202" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yb0-9u-Ofd">
@@ -93,7 +92,6 @@
                                 </constraints>
                                 <state key="normal" title="Fill out the survey">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onFillSurveyClick:" destination="rSg-yd-rS2" eventType="touchUpInside" id="M1s-VU-h92"/>
@@ -115,8 +113,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fillButton" destination="Yb0-9u-Ofd" id="Rm2-2h-jmu"/>
                         <outlet property="leaveButton" destination="Y0A-I4-NRZ" id="NId-xo-OEA"/>
                         <outlet property="notificationTimeLabel" destination="veW-wU-w0w" id="Pzv-I2-7zk"/>
+                        <outlet property="remindButton" destination="ykO-2H-amh" id="xqf-41-l2T"/>
                         <outlet property="titleLabel" destination="imK-hC-Q4N" id="cWB-4M-abe"/>
                     </connections>
                 </viewController>
