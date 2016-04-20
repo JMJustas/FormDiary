@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let createDb = false
     let createTestData = false
     let loadDataOnStartup = false
-    let testScheduling = true
+    let testScheduling = false
     let logger = Logger.instance
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
