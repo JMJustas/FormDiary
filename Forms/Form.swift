@@ -25,8 +25,9 @@ class Form : CustomStringConvertible {
     var postponeInterval: Int //time in seconds
     var description: String
     var accepted: Bool //boolean indicating if user has accepted to participate in survey
+    var activeTime: Int
     
-    init(id: String, title: String, description: String, url: String, notificationTimes: [String], postponeLimit:Int = 0, postponeCount:Int = 0, postponeInterval:Int = 600, accepted:Bool = false) throws {
+    init(id: String, title: String, description: String, url: String, notificationTimes: [String], postponeLimit:Int = 0, postponeCount:Int = 0, postponeInterval:Int = 600, accepted:Bool = false, activeTime:Int = 15) throws {
         self.id = id
         self.title = title
         self.description = description
@@ -36,6 +37,7 @@ class Form : CustomStringConvertible {
         self.postponeCount = postponeCount
         self.postponeLimit = postponeLimit
         self.accepted = accepted
+        self.activeTime = activeTime
         for notificationTimestamp in notificationTimes {
             do {
                 self.notificationTimes.append(try NotificationTime(timestamp: notificationTimestamp))
@@ -57,13 +59,11 @@ class Form : CustomStringConvertible {
                 description: resultSet.stringForColumn("description"),
                 url: resultSet.stringForColumn("url"),
                 notificationTimes: times,
-                postponeCount:
-                Int(resultSet.intForColumn("postpone_count")),
-                postponeLimit:
-                Int(resultSet.intForColumn("postpone_limit")),
-                postponeInterval:
-                Int(resultSet.intForColumn("postpone_interval")),
-                accepted: resultSet.intForColumn("accepted") == 1
+                postponeCount:Int(resultSet.intForColumn("postpone_count")),
+                postponeLimit:Int(resultSet.intForColumn("postpone_limit")),
+                postponeInterval:Int(resultSet.intForColumn("postpone_interval")),
+                accepted: resultSet.intForColumn("accepted") == 1,
+                activeTime: Int(resultSet.intForColumn("active_time"))
             )
     }
     
@@ -76,13 +76,15 @@ class Form : CustomStringConvertible {
             title = json["title"] as? String,
             url = json["url"] as? String,
             notificationTimes = json["notification_times"] as? [String],
+            activeTime = json["active_time"] as? Int,
             postponeLimit = json["postpone_limit"] as? Int {
                 try self.init(id: id,
                     title: title,
                     description: descr.stringByReplacingOccurrencesOfString("\\n", withString: "\n"),
                     url: url,
                     notificationTimes: notificationTimes,
-                    postponeLimit: postponeLimit
+                    postponeLimit: postponeLimit,
+                    activeTime: activeTime
                 )
                 if let postpone = json["postpone_interval"] as? Int {
                     if postpone > 0 {

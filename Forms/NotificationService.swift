@@ -17,13 +17,14 @@ class NotificationService {
     
     
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    var lastNotification: NSDate? = nil
 
-    func scheduleNotification(formId: String, when: NSDate, interval: NSCalendarUnit? = nil) {
+    func scheduleNotification(formId: String, when: NSDate, interval: NSCalendarUnit? = nil, postponed: Bool = false) {
         let localNotification = UILocalNotification()
         localNotification.fireDate = when
         localNotification.alertBody = alertTitle
         localNotification.soundName = UILocalNotificationDefaultSoundName // play default sound
-        localNotification.userInfo = ["formId": formId ]
+        localNotification.userInfo = ["formId": formId, "postponed": postponed]
         localNotification.category = "FORM_CATEGORY"
         if let repeatAt = interval {
             localNotification.repeatInterval = repeatAt
@@ -64,25 +65,82 @@ class NotificationService {
     
     func schedulePostponed(form: Form) {
         scheduleNotification(form.id,
-            when: NSDate(timeIntervalSinceNow: NSTimeInterval(form.postponeInterval))
+            when: NSDate(timeIntervalSinceNow: NSTimeInterval(form.postponeInterval)),
+            postponed: true
         )
     }
     
     func cancelNotifications(id: String) {
-        let app = UIApplication.sharedApplication()
         logger.log("cancelling notifications for form \(id)")
+        let app = UIApplication.sharedApplication()
+        self.getNotifications(id).forEach({notification in app.cancelLocalNotification(notification)})
+    }
+    
+    func cancelAll() {
+        logger.log("cancelling all notifications")
+        let app = UIApplication.sharedApplication()
+        app.scheduledLocalNotifications?.forEach({notification in app.cancelLocalNotification(notification)})
+    }
+
+
+    func getNotifications(id: String) -> [UILocalNotification] {
+        let app = UIApplication.sharedApplication()
         if let notifications = app.scheduledLocalNotifications {
-            notifications.filter({
+            return notifications.filter({
                 notification in
-                    if let info = notification.userInfo as? [String:AnyObject], formId = info["formId"] as? String {
-                        return id == formId
-                    }
-                    return false
-            }).forEach({
-                notification in
-                    app.cancelLocalNotification(notification)
+                if let info = notification.userInfo as? [String:AnyObject], formId = info["formId"] as? String {
+                    return id == formId
+                }
+                return false
             })
         }
+        return []
+    }
+//    loads date when the next notification will be fired for given form
+    func nextNotificationDate(id: String) -> NSDate? {
+        let notifications = self.getNotifications(id)
+        var result: NSDate? = nil
+        let now = NSDate()
+        for notification in notifications {
+            if let next = notification.nextFireDate() where next.isAfter(now) {
+                if let res = result {
+                    result = next.isBefore(res) ? next : result
+                } else {
+                    result = next
+                }
+            }
+        }
+        return result
+    }
+    
+//    loads last fired notification date for given form
+    func lastNotificationDate(id: String) -> NSDate? {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if self.lastNotification == nil {
+            let secondsSinceEpoch = defaults.doubleForKey("lastNotificationTime")
+            if secondsSinceEpoch > 0 {
+                self.lastNotification = NSDate(timeIntervalSince1970: secondsSinceEpoch)
+            } else {
+                return nil
+            }
+        }
+        return self.lastNotification
+
+    }
+    
+    func markNotification(notification: UILocalNotification) {
+        if let info = notification.userInfo as? [String:AnyObject], formId = info["formId"] as? String, postponed = info["postponed"] as? Bool {
+            if (postponed) {
+                NSLog("Postponed notification for form \(formId) won't extend survey active time. Ignoring...")
+                return
+            }
+            self.lastNotification = NSDate()
+            NSUserDefaults.standardUserDefaults().setDouble(self.lastNotification!.timeIntervalSince1970, forKey: "lastNotificationTime")
+        } else {
+            NSLog("Notification had missing data: \(notification.userInfo)")
+        }
+        
+
     }
 
 

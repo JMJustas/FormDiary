@@ -10,7 +10,7 @@ import Foundation
 
 class DataManager {
     static let instance = DataManager()
-    let DB_VERSION = 1;
+    let DB_VERSION = 2;
 
     var db: FMDatabase
     var queue: FMDatabaseQueue
@@ -25,13 +25,15 @@ class DataManager {
         queue = FMDatabaseQueue(path: databasePath as String)
     }
     
-    func initDb(recreateDb: Bool = false) {
+    func initDb(recreateDb: Bool = false) -> Bool {
+        var recreated = false
         NSLog("Initializing DB on thread \(NSThread.currentThread())")
         if db.open() {
             let dbVer = Int(db.userVersion())
             if (recreateDb || dbVer != DB_VERSION) {
                 upgradeDb(db, verFrom: dbVer, verTo: DB_VERSION);
                 db.setUserVersion(UInt32(DB_VERSION))
+                recreated = true
             }
             db.close();
         } else {
@@ -40,7 +42,7 @@ class DataManager {
         
         NSLog("FINISHED Initializing DB on thread \(NSThread.currentThread())")
 
-        return;
+        return recreated;
     }
     
     func getDb() -> FMDatabase? {
@@ -61,15 +63,13 @@ class DataManager {
     
     func dropTables(db: FMDatabase) {
         NSLog("DROPPING TABLES");
-        db.executeStatements("DROP TABLE IF EXISTS meta");
         db.executeStatements("DROP TABLE IF EXISTS forms");
     }
     
     
     func createTables(db: FMDatabase) -> Bool {
         NSLog("CREATING TABLES")
-        //META TABLE
-        if !db.executeStatements("CREATE TABLE IF NOT EXISTS forms (id TEXT PRIMARY KEY, title TEXT, description TEXT, url TEXT, notification_times TEXT, postpone_count INT, postpone_limit INT, postpone_interval INT, accepted INT)"){
+        if !db.executeStatements("CREATE TABLE IF NOT EXISTS forms (id TEXT PRIMARY KEY, title TEXT, description TEXT, url TEXT, notification_times TEXT, postpone_count INT, postpone_limit INT, postpone_interval INT, accepted INT, active_time INT)"){
             NSLog("Error: " + db.lastErrorMessage());
             return false;
         }

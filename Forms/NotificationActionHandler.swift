@@ -39,7 +39,7 @@ class NotificationActionHandler: NSObject, UIAlertViewDelegate {
     func postpone() {
         if let form = formsMgr.findForm(formId) {
 
-            form.postponeCount++
+            form.postponeCount += 1
             let limit = form.postponeLimit > 0 ? form.postponeLimit : DEFAULT_POSTPONE_LIMIT
             if form.postponeCount > limit {
                 log.log("postpone count limit exceeded for form \(form.id)")

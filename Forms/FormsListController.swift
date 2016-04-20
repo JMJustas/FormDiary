@@ -30,11 +30,11 @@ class FormsListController: UITableViewController {
         appDelegate.formsList = self
         indicator.center = view.center
         view.addSubview(indicator)
+
         
     }
  
     @IBAction func onClick(sender: AnyObject) {
-        NSLog("CLICKED")
         self.reload(true)
     }
     
@@ -49,26 +49,16 @@ class FormsListController: UITableViewController {
             
         }
         
-        
         self.indicator.startAnimating()
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let lastUpdate = defaults.doubleForKey("lastSyncDate")
-        
-        let now = NSDate().timeIntervalSince1970
-        let shouldSync = (now - lastUpdate) > SYNC_INTERVAL
-        
-        
-        if forceSync || shouldSync {
+        if forceSync  {
             NSLog("Updating form data from backend")
             formService.syncData({ _ in
-                defaults.setDouble(now, forKey: "lastSyncDate")
                 self.dataManager.loadAll(reloadHandler)
             })
         } else {
             dataManager.loadAll(reloadHandler)
         }
-        
-
+    
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -77,6 +67,21 @@ class FormsListController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rowsInSection(section)
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let form = self.data[indexPath.section]![indexPath.row]
+        formService.joinSurvey(form.id, callback: {
+            entry in
+            if entry == nil {
+                Logger.instance.log("Failed to join survey \(form.id)")
+            } else {
+                //TODO
+                let storyboard = UIStoryboard(name: "ActiveSurvey", bundle: nil)
+                let ctrl = storyboard.instantiateInitialViewController()
+                self.presentViewController(ctrl!, animated: false, completion: nil)
+            }
+        })
     }
     
     func rowsInSection(section:Int) -> Int {
@@ -97,17 +102,10 @@ class FormsListController: UITableViewController {
         return sectionTitles[section] + String(rowsInSection(section))
     }
 
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "FormView" {
-            let target = segue.destinationViewController as! FormViewController
-            let index = table.indexPathForSelectedRow!
-            target.form = data[index.section]![index.row]
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated);
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        Logger.instance.log("Will appear")
+
         reload()
     }
     

@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var formsList: FormsListController?
+    var formView: FormViewController?
     
     let formDataManager = FormDataManager.instance
     let dataManager = DataManager.instance
@@ -29,52 +30,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let createTestData = false
     let loadDataOnStartup = false
     let testScheduling = false
+    let logger = Logger.instance
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        let fillAction = UIMutableUserNotificationAction()
-        fillAction.identifier = "FILL_FORM" // the unique identifier for this action
-        fillAction.title = actionFill // title for the action button
-        fillAction.activationMode = .Background // UIUserNotificationActivationMode.Background - don't bring app to foreground
-        fillAction.authenticationRequired = false // don't require unlocking before performing action
-        fillAction.destructive = false // display action in red
-        
-        let remindAction = UIMutableUserNotificationAction()
-        remindAction.identifier = "POSTPONE"
-        remindAction.title = actionPostpone
-        remindAction.activationMode = .Background
-        remindAction.destructive = false
-        
-        let skipAction = UIMutableUserNotificationAction()
-        skipAction.identifier = "SKIP"
-        skipAction.title = actionSkip
-        skipAction.activationMode = .Background
-        skipAction.destructive = false
-        
         let category = UIMutableUserNotificationCategory() // notification categories allow us to create groups of actions that we can associate with a notification
         category.identifier = "FORM_CATEGORY"
-        category.setActions([fillAction, remindAction, skipAction], forContext: .Default) // UIUserNotificationActionContext.Default (4 actions max)
-        category.setActions([fillAction, remindAction, skipAction], forContext: .Minimal) // UIUserNotificationActionContext.Minimal - for when space is limited (2 actions max)
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories:[category]))
         
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories:[category]))
-        
-        
-        
-        dataManager.initDb(createDb);
+        if dataManager.initDb(createDb) {
+            notificationService.cancelAll()
+            if let activeForm = formService.getActiveSurveyId() {
+                formService.leaveSurvey(activeForm, callback: { form in })
+            }
+        };
         
         if createTestData {
             insertTestData()
         }
         
         if (testScheduling) {
-            do {
-                let time = try NotificationTime(timestamp: "18:50:we")
-                let id = "someid"
-                notificationService.cancelNotifications(id)
-                notificationService.schedule(id, time: time, fromDate: NSDate(timeIntervalSinceNow: 0))
-            } catch {
-                
-            }
+            NSLog("scheduling...")
+            let id = "4"
+            notificationService.scheduleNotification(id, when: NSDate(timeIntervalSinceNow: 10))
+            
         }
         
         if loadDataOnStartup {
@@ -95,51 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification)  {
-        let handler = NotificationActionHandler(formId: notification.userInfo!["formId"] as! String)
-        if objc_getClass("UIAlertController") == nil  {
-            //TODO clickedbuttonatIndex method
-            let alert = UIAlertView()
-            alert.delegate = handler
-            alert.title = alertTitle
-            alert.message = notification.alertBody
-            alert.addButtonWithTitle(actionFill)
-            alert.addButtonWithTitle(actionPostpone)
-            alert.addButtonWithTitle(actionSkip)
-            alert.show()
-            
-        } else {
-            let alertController = UIAlertController(title: alertTitle, message: nil, preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: actionFill, style: .Default, handler: {(alert: UIAlertAction!) in handler.loadForm()}))
-            alertController.addAction(UIAlertAction(title: actionPostpone, style: .Default, handler: {(alert: UIAlertAction!) in handler.postpone()}))
-            alertController.addAction(UIAlertAction(title: actionSkip, style: .Default, handler: {(alert: UIAlertAction!) in handler.skip()}))
-            self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
-            //TODO create notification handler
-        }
-
-    }
-    
-
-    
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-        if let actionId = identifier, formId = notification.userInfo?["formId"] as? String {
-            let handler = NotificationActionHandler(formId: formId)
-            switch (actionId) {
-                case "FILL_FORM":
-                    handler.loadForm()
-                    break
-                case "POSTPONE":
-                    handler.postpone()
-                    break
-                case "SKIP":
-                    handler.skip()
-                    break
-                default:
-                    handler.skip()
-            }
-
-        }
-        // Must be called when finished
-        completionHandler()
+        logger.log("got notification \(notification). Form view: \(formView)")
+        notificationService.markNotification(notification)
+        formView?.update(true)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -153,6 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
+        self.formView?.update(true)
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
