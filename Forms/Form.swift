@@ -39,12 +39,7 @@ class Form : CustomStringConvertible {
         self.accepted = accepted
         self.activeTime = activeTime
         for notificationTimestamp in notificationTimes {
-            do {
-                self.notificationTimes.append(try NotificationTime(timestamp: notificationTimestamp))
-            }
-            catch {
-                throw error
-            }
+            self.notificationTimes.append(NotificationTime(timestamp: notificationTimestamp))
         }
     }
 

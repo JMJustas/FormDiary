@@ -74,7 +74,7 @@ class FormViewController: UIViewController {
         components.second = 0
         let nextMinuteDate = calendar.dateFromComponents(components)
         NSLog("will start timer at \(nextMinuteDate)")
-        let timer = NSTimer(fireDate: nextMinuteDate!, interval: 60, target: self, selector: Selector("scheduledUpdate"), userInfo: nil, repeats: true)
+        let timer = NSTimer(fireDate: nextMinuteDate!, interval: 60, target: self, selector: #selector(FormViewController.scheduledUpdate), userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
         return timer
     }

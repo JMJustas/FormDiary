@@ -90,7 +90,7 @@
         <scene sceneID="Yun-yy-XcV">
             <objects>
                 <tableViewController id="3N7-vM-jja" customClass="SettingsController" customModule="Forms" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bqB-h4-epD">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="bqB-h4-epD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -98,16 +98,16 @@
                             <tableViewSection headerTitle="Work start time" id="OgM-wY-3vo">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="h8F-o3-EMp">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h8F-o3-EMp" id="qzC-6r-upE">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="UxC-q0-egU">
-                                                    <rect key="frame" x="140" y="-86" width="320" height="216"/>
-                                                    <date key="date" timeIntervalSinceReferenceDate="484482715.78393">
-                                                        <!--2016-05-09 10:31:55 +0000-->
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxC-q0-egU">
+                                                    <rect key="frame" x="140" y="-68" width="320" height="216"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="484466400.78393">
+                                                        <!--2016-05-09 06:00:00 +0000-->
                                                     </date>
                                                 </datePicker>
                                             </subviews>
@@ -122,16 +122,16 @@
                             <tableViewSection headerTitle="Work end time" id="9b3-PL-wE8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NMw-1l-M7t">
-                                        <rect key="frame" x="0.0" y="164" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="200" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NMw-1l-M7t" id="Ssa-1m-ybv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Suk-B4-1O5">
-                                                    <rect key="frame" x="140" y="-86" width="320" height="216"/>
-                                                    <date key="date" timeIntervalSinceReferenceDate="484482715.78393">
-                                                        <!--2016-05-09 10:31:55 +0000-->
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Suk-B4-1O5">
+                                                    <rect key="frame" x="140" y="-68" width="320" height="216"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="484498800.78393">
+                                                        <!--2016-05-09 15:00:00 +0000-->
                                                     </date>
                                                 </datePicker>
                                             </subviews>
