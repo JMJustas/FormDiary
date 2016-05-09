@@ -12,6 +12,7 @@ class NotificationTime : CustomStringConvertible{
     var hour: Int = 9;
     var minute: Int = 0;
     var dayOfWeek: String = "ad"; //stands for "all days"
+    let settingsService = SettingsService.instance
     
 //    Should use time of format HH:mm:dayOfWeek
 //    dayOfWeek: wd- working days, we - weekends
@@ -19,10 +20,9 @@ class NotificationTime : CustomStringConvertible{
     init (timestamp:String) throws {
         if timestamp == "bw" {
             dayOfWeek = "wd";
-            if let time = NSUserDefaults.standardUserDefaults().stringForKey("beforeWorkTime") {
-                var tokens = time.characters.split{$0 == ":"}
-                hour = Int(String(tokens[0]))!
-                minute = Int(String(tokens[1]))!
+            if let time = settingsService.getWorkStartTime() {
+                hour = time.hour
+                minute = time.minute
             } else {
                 hour = 9
                 minute = 0
@@ -32,10 +32,9 @@ class NotificationTime : CustomStringConvertible{
         
         if timestamp == "aw" {
             dayOfWeek = "wd";
-            if let time = NSUserDefaults.standardUserDefaults().stringForKey("beforeWorkTime") {
-                var tokens = time.characters.split{$0 == ":"}
-                hour = Int(String(tokens[0]))!
-                minute = Int(String(tokens[1]))!
+            if let time = settingsService.getWorkEndTime() {
+                hour = time.hour
+                minute = time.minute
             } else {
                 hour = 18
                 minute = 0

@@ -12,6 +12,7 @@ import UIKit
 class SurveySearchController: UIViewController {
 
     let formService = FormService.instance
+    let settingsService = SettingsService.instance
     let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
     @IBOutlet weak var formSearchField: UITextField!
@@ -29,12 +30,22 @@ class SurveySearchController: UIViewController {
         formService.syncData({_ in})
     }
     @IBAction func onJoinClick(sender: UIButton) {
-        joinForm(formSearchField.text)
+        //Do not allow to join a survey if no work end/start times present
+        if settingsService.getWorkStartTime() == nil || settingsService.getWorkEndTime() == nil {
+            return showSettings()
+        }
+        
+        return joinForm(formSearchField.text)
+    }
+    
+    func showSettings() {
+        self.performSegueWithIdentifier("showSettings", sender: self)
     }
     
     func joinForm(idString:String?) {
         if let id = idString {
             self.indicator.startAnimating()
+            
             formService.joinSurvey(id, callback: {
                 result in
                 self.indicator.stopAnimating()

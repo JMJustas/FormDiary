@@ -12,7 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var formsList: FormsListController?
     var formView: FormViewController?
     
     let formDataManager = FormDataManager.instance
@@ -28,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let createDb = false
     let createTestData = false
-    let loadDataOnStartup = false
     let testScheduling = false
     let logger = Logger.instance
     
@@ -55,12 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        if loadDataOnStartup {
-            formService.syncData({forms in
-                NSLog("Updated \(forms.count) forms. Reloading forms list...")
-                self.formsList?.reload()
-            })            
-        }
         NSLog("DELEGATE INITIALIZED")
         return true
     }
