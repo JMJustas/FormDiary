@@ -14,6 +14,7 @@
 		6E42D2091C06465200DAA1FF /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42D2081C06465200DAA1FF /* FormViewController.swift */; };
 		6E4AF17B1BB46D400027DB83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4AF17A1BB46D400027DB83 /* AppDelegate.swift */; };
 		6E4AF1821BB46D400027DB83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AF1801BB46D400027DB83 /* Main.storyboard */; };
+		6E4AF1871BB46D400027DB83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4AF1851BB46D400027DB83 /* LaunchScreen.storyboard */; };
 		6E4EF3E41C788BA700991A0C /* LocalNotificationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4EF3E31C788BA700991A0C /* LocalNotificationUtils.swift */; };
 		6E500F041BCAC1DD004930E6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500EFA1BCAC1DD004930E6 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6E500F051BCAC1DD004930E6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E500EFC1BCAC1DD004930E6 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -57,6 +58,7 @@
 		6E4AF1771BB46D400027DB83 /* Forms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E4AF17A1BB46D400027DB83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E4AF1811BB46D400027DB83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6E4AF1861BB46D400027DB83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E4AF1881BB46D400027DB83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E4EF3E31C788BA700991A0C /* LocalNotificationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationUtils.swift; sourceTree = "<group>"; };
 		6E500EF91BCAC1DD004930E6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				6E4AF18E1BB46E550027DB83 /* ViewControllers */,
 				6E4AF1801BB46D400027DB83 /* Main.storyboard */,
 				6EFCD0D51C6C3EBC00796CE1 /* ActiveSurvey.storyboard */,
+				6E4AF1851BB46D400027DB83 /* LaunchScreen.storyboard */,
 				6EFCD0D91C6C4A2B00796CE1 /* JoinSurvey.storyboard */,
 				6E4AF1881BB46D400027DB83 /* Info.plist */,
 			);
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EFCD0D61C6C3EBC00796CE1 /* ActiveSurvey.storyboard in Resources */,
+				6E4AF1871BB46D400027DB83 /* LaunchScreen.storyboard in Resources */,
 				6ECFD18C1C40E6B3003EC3E1 /* Assets.xcassets in Resources */,
 				6E4AF1821BB46D400027DB83 /* Main.storyboard in Resources */,
 				6EFCD0DA1C6C4A2B00796CE1 /* JoinSurvey.storyboard in Resources */,
@@ -396,6 +400,14 @@
 				6E4AF1811BB46D400027DB83 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6E4AF1851BB46D400027DB83 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6E4AF1861BB46D400027DB83 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
