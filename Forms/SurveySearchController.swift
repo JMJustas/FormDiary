@@ -49,14 +49,25 @@ class SurveySearchController: UIViewController {
             formService.joinSurvey(id, callback: {
                 result in
                 self.indicator.stopAnimating()
-                if let _ = result {
+                if let form = result {
                     let storyboard = UIStoryboard(name: "ActiveSurvey", bundle: nil)
                     let ctrl = storyboard.instantiateInitialViewController()
                     self.presentViewController(ctrl!, animated: false, completion: nil)
+                    self.showProfileForm(form)
                 } else {
                     //TODO show error toast
                 }
             })
+        }
+    }
+    
+    func showProfileForm(form: Form) {
+        if form.profileFormUrl.isEmpty {
+            return
+        }
+        
+        if let url = NSURL(string: form.profileFormUrl) {
+            UIApplication.sharedApplication().openURL(url)
         }
     }
 }
