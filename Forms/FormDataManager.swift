@@ -60,6 +60,7 @@ class FormDataManager {
             form.description,
             form.url,
             form.serializeNotificationTimes(),
+            form.profileFormUrl,
             form.postponeCount,
             form.postponeLimit,
             form.postponeInterval,
@@ -69,8 +70,8 @@ class FormDataManager {
         ]
 
         let stmt = findForm(form.id) == nil ?
-            "INSERT INTO forms (title, description, url, notification_times, postpone_count, postpone_limit, postpone_interval, accepted, active_time, id) VALUES (?,?,?,?,?,?,?,?,?,?)":
-            "UPDATE forms SET title=?, description=?, url=?, notification_times=?, postpone_count=?, postpone_limit=?, postpone_interval=?, accepted=?, active_time=? where id=?";
+            "INSERT INTO forms (title, description, url, notification_times, profile_form_url, postpone_count, postpone_limit, postpone_interval, accepted, active_time, id) VALUES (?,?,?,?,?,?,?,?,?,?,?)":
+            "UPDATE forms SET title=?, description=?, url=?, notification_times=?, profile_form_url=?, postpone_count=?, postpone_limit=?, postpone_interval=?, accepted=?, active_time=? where id=?";
         var res: Form?
         dbManager.executeInQueue { db in
            res = db.executeUpdate(stmt, withArgumentsInArray: args as [AnyObject]) ? form : nil

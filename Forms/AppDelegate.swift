@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func insertTestData() {
         let times = ["19:00:we", "20:00:we"]
-        let testForm = try! Form(id: "test", title: "test", description: "test form", url: "https://docs.google.com/forms/d/1ON0IpHQXjQ_TPHRP7ioEZXWbZC9YjDBCRQm09VinmLk/viewform?entry.1280822523=**id**", notificationTimes: times, postponeLimit: 1, postponeInterval: 10)
+        let testForm = try! Form(id: "test", title: "test", description: "test form", url: "https://docs.google.com/forms/d/1ON0IpHQXjQ_TPHRP7ioEZXWbZC9YjDBCRQm09VinmLk/viewform?entry.1280822523=**id**", notificationTimes: times, profileFormUrl: "https://docs.google.com/forms/d/19BgZmI8oXbjopYmDa9l5WMDXwT1_Mj4Ofwfx8MZ_FZo/viewform?entry.135011125=**id**", postponeLimit: 1, postponeInterval: 10)
         formDataManager.saveForm(testForm)
     }
     

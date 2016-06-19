@@ -26,14 +26,16 @@ class Form : CustomStringConvertible {
     var description: String
     var accepted: Bool //boolean indicating if user has accepted to participate in survey
     var activeTime: Int
+    var profileFormUrl: String
     
-    init(id: String, title: String, description: String, url: String, notificationTimes: [String], postponeLimit:Int = 0, postponeCount:Int = 0, postponeInterval:Int = 600, accepted:Bool = false, activeTime:Int = 15) throws {
+    init(id: String, title: String, description: String, url: String, notificationTimes: [String], profileFormUrl: String, postponeLimit:Int = 0, postponeCount:Int = 0, postponeInterval:Int = 600, accepted:Bool = false, activeTime:Int = 15) throws {
         self.id = id
         self.title = title
         self.description = description
         self.postponeInterval = postponeInterval
         self.url = url.stringByReplacingOccurrencesOfString(ID_PATTERN, withString: deviceId)
         self.notificationTimes = []
+        self.profileFormUrl = profileFormUrl.stringByReplacingOccurrencesOfString(ID_PATTERN, withString: deviceId)
         self.postponeCount = postponeCount
         self.postponeLimit = postponeLimit
         self.accepted = accepted
@@ -54,6 +56,7 @@ class Form : CustomStringConvertible {
                 description: resultSet.stringForColumn("description"),
                 url: resultSet.stringForColumn("url"),
                 notificationTimes: times,
+                profileFormUrl: resultSet.stringForColumn("profile_form_url"),
                 postponeCount:Int(resultSet.intForColumn("postpone_count")),
                 postponeLimit:Int(resultSet.intForColumn("postpone_limit")),
                 postponeInterval:Int(resultSet.intForColumn("postpone_interval")),
@@ -70,6 +73,7 @@ class Form : CustomStringConvertible {
             id = json["id"] as? String,
             title = json["title"] as? String,
             url = json["url"] as? String,
+            profileFormUrl = json["profile_form_url"] as? String,
             notificationTimes = json["notification_times"] as? [String],
             activeTime = json["active_time"] as? Int,
             postponeLimit = json["postpone_limit"] as? Int {
@@ -78,6 +82,7 @@ class Form : CustomStringConvertible {
                     description: descr.stringByReplacingOccurrencesOfString("\\n", withString: "\n"),
                     url: url,
                     notificationTimes: notificationTimes,
+                    profileFormUrl: profileFormUrl,
                     postponeLimit: postponeLimit,
                     activeTime: activeTime
                 )

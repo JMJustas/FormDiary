@@ -10,7 +10,7 @@ import Foundation
 
 class DataManager {
     static let instance = DataManager()
-    let DB_VERSION = 2;
+    let DB_VERSION = 4;
 
     var db: FMDatabase
     var queue: FMDatabaseQueue
@@ -69,7 +69,7 @@ class DataManager {
     
     func createTables(db: FMDatabase) -> Bool {
         NSLog("CREATING TABLES")
-        if !db.executeStatements("CREATE TABLE IF NOT EXISTS forms (id TEXT PRIMARY KEY, title TEXT, description TEXT, url TEXT, notification_times TEXT, postpone_count INT, postpone_limit INT, postpone_interval INT, accepted INT, active_time INT)"){
+        if !db.executeStatements("CREATE TABLE IF NOT EXISTS forms (id TEXT PRIMARY KEY, title TEXT, description TEXT, url TEXT, notification_times TEXT, profile_form_url TEXT, postpone_count INT, postpone_limit INT, postpone_interval INT, accepted INT, active_time INT)"){
             NSLog("Error: " + db.lastErrorMessage());
             return false;
         }
