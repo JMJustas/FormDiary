@@ -46,15 +46,10 @@ class FormViewController: UIViewController {
     delegate.formView = self;
     self.remindButton.hidden = true
     self.fillButton.hidden = true
-    
-    formService.loadActive({
-      form in
-      print (form?.title)
-      self.leaveButton.enabled = true
-      self.title = form?.title
-      self.form = form
-      self.update(true)
-    })
+    self.form = formService.loadActive()
+    self.leaveButton.enabled = true
+    self.title = self.form?.title
+    self.update(true)
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -129,16 +124,9 @@ class FormViewController: UIViewController {
   
   @IBAction func onLeaveSurveyClick(sender: AnyObject) {
     leaveButton.enabled = false
-    let handler: (Form?) -> Void = {form in
-      self.leaveButton.enabled = true
-      if form == nil {
-        NSLog("ERROR: Failed to update form data when leaving survey!")
-      } else {
-        self.dismissViewControllerAnimated(true, completion: nil)
-      }
-    }
-    let formId = formService.getActiveSurveyId()!
-    formService.leaveSurvey(formId, callback: handler)
+    formService.leaveActiveSurvey()
+    self.leaveButton.enabled = true
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
   @IBAction func onFillSurveyClick(sender: UIButton) {

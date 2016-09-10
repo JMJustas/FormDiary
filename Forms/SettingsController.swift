@@ -10,16 +10,12 @@ import Foundation
 import UIKit
 
 class SettingsController: UITableViewController {
-  var form: Form?
   
   let settingsService = SettingsService.instance
+  var form: Form?
   
   override func viewDidLoad() {
-    if let formData = form {
-      print(formData)
-    } else {
-      print("Form was not set")
-    }
+    print(form)
   }
   
   @IBAction func onBackButtonClick(sender: UIBarButtonItem) {
@@ -31,7 +27,10 @@ class SettingsController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    if let form = self.form {
+      return form.notificationTimes.count
+    }
+    return 0
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

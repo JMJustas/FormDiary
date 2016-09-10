@@ -12,38 +12,10 @@ import UIKit
 class FormService {
   static let instance = FormService();
   let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-  let db = FormDataManager.instance
   let connector = FormDataConnector.instance
   let notificationService = NotificationService.instance
   let logger = Logger.instance
   var activeSurvey:Form? = nil;
-  
-  //
-  //    Asynchronously loads and updates all forms data
-  //
-  func syncData(callback:(savedForms:[Form]) -> Void) {
-    connector.loadFormsData({
-      forms in
-      
-      dispatch_async(dispatch_get_global_queue(self.priority, 0)) {
-        var outForms = [Form]()
-        for form in forms {
-          if let oldData = self.db.findForm(form.id) {
-            form.accepted = oldData.accepted
-            form.postponeCount = oldData.postponeCount
-          }
-          if let res = self.db.saveForm(form) {
-            outForms.append(res)
-          }
-        }
-        
-        dispatch_async(dispatch_get_main_queue()) {
-          callback(savedForms: outForms)
-        }
-      }
-    })
-  }
-  
   
   func joinSurvey(id: String, callback: (Form?) -> Void) {
     return connector.loadOne(id, handler: {
@@ -55,8 +27,7 @@ class FormService {
         for (index,time) in form.notificationTimes.enumerate() {
           self.notificationService.schedule(form.id, notificationId: "\(index + 1))", time: time, fromDate: date)
         }
-        NSUserDefaults.standardUserDefaults().setValue(id, forKey: "ActiveSurvey")
-        self.activeSurvey = form;
+        self.setActive(form)
         return dispatch_async(dispatch_get_main_queue()) {
           callback(form)
         }
@@ -67,65 +38,41 @@ class FormService {
     })
   }
   
-  func leaveSurvey(id: String, callback: (Form?) -> Void) {
-    if self.getActiveSurveyId() != id {
-      logger.log("FORM with id \(id) is not active")
-      return
+  func leaveActiveSurvey() {
+    if let form = loadActive() {
+      self.notificationService.cancelNotifications(form.id)
+      self.clearActive()
+    } else {
+      print("no active form")
     }
-    self.notificationService.cancelNotifications(id)
-    NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "ActiveSurvey")
-    let form = self.activeSurvey
-    self.activeSurvey = nil
-    callback(form)
   }
   
-  func load(id: String, callback: (Form?) -> Void) {
-    dispatch_async(dispatch_get_global_queue(priority, 0)) {
-      let form = self.db.findForm(id)
-      dispatch_async(dispatch_get_main_queue()) {
-        callback(form)
-      }
-    }
-  }
   
   func getActiveSurveyId() -> String? {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    return defaults.stringForKey("ActiveSurvey")
-  }
-  
-  func getActiveSurveyData() -> Form? {
-    let defaults = NSUserDefaults.standardUserDefaults()
-    if let payload = defaults.stringForKey("ActiveSurveyData") {
-      do {
-        let json = try NSJSONSerialization.JSONObjectWithData(payload.dataUsingEncoding(NSUTF8StringEncoding)!, options: [])
-          as! [String: AnyObject]
-        return try Form(json: json)
-      } catch {
-        return nil
-      }
+    if let form = loadActive() {
+      return form.id
     }
     return nil
   }
   
-  func loadActive(callback: (Form?) -> Void) {
-    if let id = self.getActiveSurveyId() {
-      if let form = self.activeSurvey {
-        return self.executeInMainThread(callback, data: form)
-      }
-      return connector.loadOne(id, handler: {formLoadResult in
-        if let form = formLoadResult {
-          self.activeSurvey = form;
-          return self.executeInMainThread(callback, data: form)
-        }
-      })
-    }
-    return executeInMainThread(callback, data: nil)
+  func setActive(form: Form) {
+    NSUserDefaults.standardUserDefaults().setValue(form.toJsonString(), forKey: "activeForm")
+  }
+  func clearActive() {
+    NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "activeForm")
   }
   
-  func executeInMainThread(callback: (Form?) -> Void, data: Form?) {
-    dispatch_async(dispatch_get_main_queue()) {
-      callback(data)
+  func loadActive() -> Form? {
+    let data = NSUserDefaults.standardUserDefaults().stringForKey("activeForm")
+
+    if let json = data {
+      do {
+        return try Form(jsonString: json)
+      } catch {
+        print("ERROR WHEN PARSING FORM DATA")
+        return nil
+      }
     }
-    
+    return nil
   }
 }

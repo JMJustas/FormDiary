@@ -44,7 +44,10 @@ class SurveySearchController: UIViewController {
         self.indicator.stopAnimating()
         if let form = result {
           self.form = form
-          return self.showProfileForm(form)
+          let storyboard = UIStoryboard(name: "ActiveSurvey", bundle: nil)
+          let ctrl = storyboard.instantiateInitialViewController()
+          self.presentViewController(ctrl!, animated: false, completion: nil)
+          self.showProfileForm(form)  
         } else {
           //TODO show error toast
         }
