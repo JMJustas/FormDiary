@@ -19,12 +19,12 @@ class NotificationService {
     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
     var lastNotification: NSDate? = nil
 
-    func scheduleNotification(formId: String, when: NSDate, interval: NSCalendarUnit? = nil, postponed: Bool = false) {
+  func scheduleNotification(formId: String, notificationId: String, when: NSDate, interval: NSCalendarUnit? = nil, postponed: Bool = false) {
         let localNotification = UILocalNotification()
         localNotification.fireDate = when
         localNotification.alertBody = alertTitle
         localNotification.soundName = UILocalNotificationDefaultSoundName // play default sound
-        localNotification.userInfo = ["formId": formId, "postponed": postponed]
+        localNotification.userInfo = ["formId": formId, "postponed": postponed, "notificationId": notificationId]
         localNotification.category = "FORM_CATEGORY"
         if let repeatAt = interval {
             localNotification.repeatInterval = repeatAt
@@ -36,7 +36,7 @@ class NotificationService {
     
 
     
-    func schedule(id: String, time: NotificationTime, fromDate: NSDate) {
+  func schedule(id: String, notificationId: String, time: NotificationTime, fromDate: NSDate) {
         var date = calendar.dateBySettingHour(time.hour, minute: time.minute, second: 0, ofDate: fromDate, options: [])! as NSDate
         
         if !date.isAfter(fromDate) {
@@ -55,7 +55,7 @@ class NotificationService {
             if daysToSkip.contains(dayOfWeek) {
                 logger.log("Skipping schedule for \(date)")
             } else {
-                scheduleNotification(id, when: date, interval: NSCalendarUnit.WeekOfYear)
+              scheduleNotification(id, notificationId: notificationId, when: date, interval: NSCalendarUnit.WeekOfYear)
             }
 
             date += 1.day
@@ -63,9 +63,9 @@ class NotificationService {
         
     }
     
-    func schedulePostponed(form: Form) {
-        scheduleNotification(form.id,
-            when: NSDate(timeIntervalSinceNow: NSTimeInterval(form.postponeInterval)),
+  func schedulePostponed(formId: String, notificationId: String, after: Int) {
+        scheduleNotification(formId, notificationId: notificationId,
+            when: NSDate(timeIntervalSinceNow: NSTimeInterval(after)),
             postponed: true
         )
     }
@@ -136,12 +136,15 @@ class NotificationService {
             }
             self.lastNotification = NSDate()
             NSUserDefaults.standardUserDefaults().setDouble(self.lastNotification!.timeIntervalSince1970, forKey: "lastNotificationTime")
+          NSUserDefaults.standardUserDefaults().setObject(info, forKey: "lastNotificationInfo")
         } else {
             NSLog("Notification had missing data: \(notification.userInfo)")
         }
-        
-
     }
+  
+  func getLastNotificationData() -> [String: AnyObject]?{
+    return NSUserDefaults.standardUserDefaults().dictionaryForKey("lastNotificationInfo")
+  }
 
 
 }

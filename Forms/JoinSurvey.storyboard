@@ -66,18 +66,7 @@
                             <constraint firstItem="Tgf-9X-RG6" firstAttribute="centerX" secondItem="eo1-DK-5fW" secondAttribute="centerX" id="pan-jz-PPn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Join a survey" id="ujG-nl-Lhz">
-                        <barButtonItem key="leftBarButtonItem" title="Sync data" id="oja-tt-mHj">
-                            <connections>
-                                <action selector="onSyncClick:" destination="RVa-Ww-fDt" id="XKp-ec-el0"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="wFb-kH-aBa">
-                            <connections>
-                                <segue destination="3N7-vM-jja" kind="show" identifier="showSettings" id="CMi-R0-hlo"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Join a survey" id="ujG-nl-Lhz"/>
                     <connections>
                         <outlet property="formSearchField" destination="Tgf-9X-RG6" id="38Y-gp-M3n"/>
                     </connections>
@@ -85,85 +74,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2B-vo-ADX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="29" y="-988"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="Yun-yy-XcV">
-            <objects>
-                <tableViewController id="3N7-vM-jja" customClass="SettingsController" customModule="Forms" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="bqB-h4-epD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection headerTitle="Work start time" id="OgM-wY-3vo">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="h8F-o3-EMp">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h8F-o3-EMp" id="qzC-6r-upE">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxC-q0-egU">
-                                                    <rect key="frame" x="140" y="-68" width="320" height="216"/>
-                                                    <date key="date" timeIntervalSinceReferenceDate="484466400.78393">
-                                                        <!--2016-05-09 06:00:00 +0000-->
-                                                    </date>
-                                                </datePicker>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="UxC-q0-egU" firstAttribute="centerX" secondItem="qzC-6r-upE" secondAttribute="centerX" id="4pG-FW-XUR"/>
-                                                <constraint firstItem="UxC-q0-egU" firstAttribute="centerY" secondItem="qzC-6r-upE" secondAttribute="centerY" id="zcs-OD-jAV"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Work end time" id="9b3-PL-wE8">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NMw-1l-M7t">
-                                        <rect key="frame" x="0.0" y="200" width="600" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NMw-1l-M7t" id="Ssa-1m-ybv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Suk-B4-1O5">
-                                                    <rect key="frame" x="140" y="-68" width="320" height="216"/>
-                                                    <date key="date" timeIntervalSinceReferenceDate="484498800.78393">
-                                                        <!--2016-05-09 15:00:00 +0000-->
-                                                    </date>
-                                                </datePicker>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Suk-B4-1O5" firstAttribute="centerY" secondItem="Ssa-1m-ybv" secondAttribute="centerY" id="NRd-UM-3Ym"/>
-                                                <constraint firstItem="Suk-B4-1O5" firstAttribute="centerX" secondItem="Ssa-1m-ybv" secondAttribute="centerX" id="tDR-gj-iyY"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="3N7-vM-jja" id="miD-EM-K4K"/>
-                            <outlet property="delegate" destination="3N7-vM-jja" id="Tj2-hk-FVM"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="w3C-dT-9hs">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="rne-RU-o4W">
-                            <connections>
-                                <action selector="onBackButtonClick:" destination="3N7-vM-jja" id="h91-y5-soq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="workEndTimePicker" destination="Suk-B4-1O5" id="1hH-aV-TOW"/>
-                        <outlet property="workStartTimePicker" destination="UxC-q0-egU" id="ZgH-ND-VXp"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WYI-Zs-qsh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="732" y="-988"/>
         </scene>
     </scenes>
 </document>

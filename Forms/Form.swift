@@ -33,7 +33,7 @@ class Form : CustomStringConvertible {
         self.title = title
         self.description = description
         self.postponeInterval = postponeInterval
-        self.url = url.stringByReplacingOccurrencesOfString(ID_PATTERN, withString: deviceId)
+        self.url = url
         self.notificationTimes = []
         self.profileFormUrl = profileFormUrl.stringByReplacingOccurrencesOfString(ID_PATTERN, withString: deviceId)
         self.postponeCount = postponeCount
@@ -95,8 +95,29 @@ class Form : CustomStringConvertible {
         } else {
           throw ParsingError.InvalidInput
         }
-        
     }
+  
+  
+  func json(key:String, value: String) -> String {
+    return "\"\(key)\": \"\(value)\""
+  }
+  func json(key:String, value: Int) -> String {
+    return "\"\(key)\": \(value)"
+  }
+  
+  //TODO move to external class
+  func toJsonString() -> String {
+    let id = json("id", value: self.id)
+    let description = json("description", value: self.description.stringByReplacingOccurrencesOfString("\n", withString: "\\n"))
+    let title = json("title", value: self.title)
+    let url = json("url", value: self.url)
+    let profileFormUrl = json("profile_form_url", value: self.profileFormUrl)
+    let notificationTimes = json("notification_times", value: self.serializeNotificationTimes())
+    let postponeLimit = json("postpone_limit", value: self.postponeLimit)
+    let activeTime = json("active_time", value: self.activeTime)
+    let postponeInterval = json ("postpone_interval", value: self.postponeInterval)
+    return "{\(id), \(description), \(title), \(url), \(profileFormUrl), \(notificationTimes), \(postponeLimit), \(activeTime), \(postponeInterval)}"
+  }
     
     func serializeNotificationTimes() -> String {
         let times = notificationTimes.map ({element in return element.description})

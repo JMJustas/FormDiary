@@ -18,7 +18,7 @@ class DispatcherController: UIViewController {
         let storyboardName = formService.getActiveSurveyId() == nil ?
         "JoinSurvey" :
         "ActiveSurvey"
-        
+        print(storyboardName)
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         let ctrl = storyboard.instantiateInitialViewController()
         self.presentViewController(ctrl!, animated: false, completion: nil)

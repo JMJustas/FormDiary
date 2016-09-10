@@ -10,29 +10,38 @@ import Foundation
 import UIKit
 
 class SettingsController: UITableViewController {
-    
-    @IBOutlet weak var workStartTimePicker: UIDatePicker!
-    @IBOutlet weak var workEndTimePicker: UIDatePicker!
-    
-    let settingsService = SettingsService.instance
-    
-    override func viewDidLoad() {
-        if let workStartTime = settingsService.getWorkStartTime() {
-            workStartTimePicker.date = workStartTime.toTodaysDate()
-        }
-        
-        if let workEndTime = settingsService.getWorkEndTime() {
-           workEndTimePicker.date = workEndTime.toTodaysDate()
-        }
+  var form: Form?
+  
+  let settingsService = SettingsService.instance
+  
+  override func viewDidLoad() {
+    if let formData = form {
+      print(formData)
+    } else {
+      print("Form was not set")
     }
+  }
+  
+  @IBAction func onBackButtonClick(sender: UIBarButtonItem) {
+    self.navigationController?.popViewControllerAnimated(true)
+  }
+  
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return 1
+  }
+  
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 3
+  }
+  
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    @IBAction func onBackButtonClick(sender: UIBarButtonItem) {
-        saveSettings()
-        self.navigationController?.popViewControllerAnimated(true)
-    }
+    let cell =
+      self.tableView.dequeueReusableCellWithIdentifier(
+        "timePicker", forIndexPath: indexPath)
     
-    func saveSettings() {
-        settingsService.setWorkStartTime(Time(date: workStartTimePicker.date))
-        settingsService.setWorkEndTime(Time(date: workEndTimePicker.date))
-    }
+    
+    
+    return cell
+  }
 }
