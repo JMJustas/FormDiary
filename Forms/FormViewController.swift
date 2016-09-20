@@ -44,6 +44,10 @@ class FormViewController: UIViewController {
     super.viewDidLoad()
     let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
     delegate.formView = self;
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    print("will appear")
     self.remindButton.hidden = true
     self.fillButton.hidden = true
     self.form = formService.loadActive()

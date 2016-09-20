@@ -120,30 +120,47 @@
         <scene sceneID="NuV-hD-EW2">
             <objects>
                 <tableViewController id="awO-Ro-ALm" customClass="SettingsController" customModule="Forms" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" id="3V4-KB-8y4">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" id="3V4-KB-8y4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timePicker" id="iXm-ji-BZo">
-                                <rect key="frame" x="0.0" y="92" width="600" height="80"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timePicker" id="iXm-ji-BZo" customClass="NotificationTimePickerView" customModule="Forms" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iXm-ji-BZo" id="xPC-Hm-r2x">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xs4-86-4Rb">
-                                            <rect key="frame" x="140" y="-68" width="320" height="216"/>
-                                            <date key="date" timeIntervalSinceReferenceDate="484466400.78393">
-                                                <!--2016-05-09 06:00:00 +0000-->
+                                        <datePicker contentMode="TopLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="sjC-n7-AZw">
+                                            <rect key="frame" x="8" y="30" width="584" height="142"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="142" id="WC5-UF-dLZ"/>
+                                            </constraints>
+                                            <date key="date" timeIntervalSinceReferenceDate="496003909.573071">
+                                                <!--2016-09-19 18:51:49 +0000-->
                                             </date>
                                         </datePicker>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEG-PA-U8g">
+                                            <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="xs4-86-4Rb" firstAttribute="centerX" secondItem="xPC-Hm-r2x" secondAttribute="centerX" id="JhZ-KF-jsU"/>
-                                        <constraint firstItem="xs4-86-4Rb" firstAttribute="centerY" secondItem="xPC-Hm-r2x" secondAttribute="centerY" id="YGA-ZT-7ld"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="qEG-PA-U8g" secondAttribute="leading" id="CwM-J8-bLN"/>
+                                        <constraint firstAttribute="bottom" secondItem="sjC-n7-AZw" secondAttribute="bottom" constant="8" id="G9r-6w-uEz"/>
+                                        <constraint firstItem="sjC-n7-AZw" firstAttribute="top" secondItem="qEG-PA-U8g" secondAttribute="bottom" constant="1" id="Gd0-lJ-T3r"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="sjC-n7-AZw" secondAttribute="leading" id="GzH-7w-DQH"/>
+                                        <constraint firstAttribute="topMargin" secondItem="qEG-PA-U8g" secondAttribute="top" id="QFr-PE-2RC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="sjC-n7-AZw" secondAttribute="trailing" id="oWo-P1-5AK"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="qEG-PA-U8g" id="GlC-vM-8Ri"/>
+                                    <outlet property="timePicker" destination="sjC-n7-AZw" id="04T-SA-oP2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -159,13 +176,17 @@
                                 <action selector="onBackButtonClick:" destination="awO-Ro-ALm" id="4IR-rD-CVI"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Bt8-ta-cXy"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Bt8-ta-cXy">
+                            <connections>
+                                <action selector="onSaveButtonClick:" destination="awO-Ro-ALm" id="rfp-sF-0ay"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12V-mT-fVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1509" y="-821"/>
+            <point key="canvasLocation" x="1559" y="-821"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bnx-YW-IdC">

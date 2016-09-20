@@ -21,13 +21,7 @@ class FormService {
     return connector.loadOne(id, handler: {
       formData in
       if let form = formData {
-        form.accepted = true;
-        let date = NSDate()
-        self.notificationService.cancelNotifications(form.id)
-        for (index,time) in form.notificationTimes.enumerate() {
-          self.notificationService.schedule(form.id, notificationId: "\(index + 1))", time: time, fromDate: date)
-        }
-        self.setActive(form)
+        self.joinSurvey(form)
         return dispatch_async(dispatch_get_main_queue()) {
           callback(form)
         }
@@ -36,6 +30,16 @@ class FormService {
         callback(nil)
       }
     })
+  }
+  
+  func joinSurvey(form: Form) {
+    form.accepted = true;
+    let date = NSDate()
+    self.notificationService.cancelNotifications(form.id)
+    for (index,time) in form.notificationTimes.enumerate() {
+      self.notificationService.schedule(form.id, notificationId: "\(index + 1))", time: time, fromDate: date)
+    }
+    self.setActive(form)
   }
   
   func leaveActiveSurvey() {
