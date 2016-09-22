@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-  func execInUIThread(handler: (AnyObject?) -> Void) -> (AnyObject?) -> Void {
+  func execInUIThread(_ handler: @escaping (AnyObject?) -> Void) -> (AnyObject?) -> Void {
     return { result in
-      dispatch_async(dispatch_get_main_queue()) {
+      DispatchQueue.main.async {
         handler(result)
       }
     }

@@ -14,15 +14,15 @@ class FormDataConnector {
   
   let API_URL = TEST_URL;
   
-  static let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-  let session = NSURLSession(configuration: config)
+  static let config = URLSessionConfiguration.default
+  let session = URLSession(configuration: config)
   
-  func loadOne(formId: String, handler: Form? -> Void) {
-    session.dataTaskWithURL(NSURL(string: "\(API_URL)?formId=\(formId)")!, completionHandler: {(data, response, error) in
+  func loadOne(_ formId: String, handler: @escaping (Form?) -> Void) {
+    session.dataTask(with: URL(string: "\(API_URL)?formId=\(formId)")!, completionHandler: {(data, response, error) in
       
       if let payload = data {
         do {
-          let json = try NSJSONSerialization.JSONObjectWithData(payload, options: []) as! [String: AnyObject]
+          let json = try JSONSerialization.jsonObject(with: payload, options: []) as! [String: AnyObject]
           if let status = json["status"] as? String{
             if status == "OK" {
               handler(self.parseForm(json["data"]))
@@ -43,7 +43,7 @@ class FormDataConnector {
     }).resume()
   }
   
-  func parseForm(entry: AnyObject?) -> Form? {
+  func parseForm(_ entry: AnyObject?) -> Form? {
     do {
       if let json = entry as? [String:AnyObject]{
         return try Form (json: json)
@@ -54,14 +54,14 @@ class FormDataConnector {
     return nil
   }
   
-  func loadFormsData(handler: ([Form]) -> Void) {
+  func loadFormsData(_ handler: @escaping ([Form]) -> Void) {
     NSLog("Loading data...")
-    session.dataTaskWithURL(NSURL(string: API_URL)!, completionHandler: {(data, response, error) in
+    session.dataTask(with: URL(string: API_URL)!, completionHandler: {(data, response, error) in
       if let err = error {
         NSLog("ERROR while fetching forms data: \(err)")
       } else if let payload = data {
         do {
-          let json = try NSJSONSerialization.JSONObjectWithData(payload, options: []) as! [String: AnyObject]
+          let json = try JSONSerialization.jsonObject(with: payload, options: []) as! [String: AnyObject]
           if let status = json["status"] as? String {
             if let entries = json ["data"] as? [[String: AnyObject]] {
               if status == "OK" {
@@ -83,7 +83,7 @@ class FormDataConnector {
     
   }
   
-  func parseEntries(entries: [[String: AnyObject]]) -> [Form] {
+  func parseEntries(_ entries: [[String: AnyObject]]) -> [Form] {
     var result: [Form] = []
     for entry in entries {
       do {

@@ -26,13 +26,13 @@ class FormViewController: UIViewController {
   
   let log = Logger.instance
   let notificationService = NotificationService.instance
-  let dateFormatter = NSDateFormatter()
+  let dateFormatter = DateFormatter()
   
   let formService = FormService.instance
   
-  var nextNotification: NSDate?
-  var lastNotification: NSDate?
-  var timer: NSTimer?
+  var nextNotification: Date?
+  var lastNotification: Date?
+  var timer: Timer?
   var form: Form?
   
   required init?(coder aDecoder: NSCoder) {
@@ -42,48 +42,48 @@ class FormViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let delegate = UIApplication.shared.delegate as! AppDelegate
     delegate.formView = self;
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     print("will appear")
-    self.remindButton.hidden = true
-    self.fillButton.hidden = true
+    self.remindButton.isHidden = true
+    self.fillButton.isHidden = true
     self.form = formService.loadActive()
-    self.leaveButton.enabled = true
+    self.leaveButton.isEnabled = true
     self.title = self.form?.title
     self.update(true)
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     self.timer = startTimer()
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     NSLog("closing timer")
     self.timer?.invalidate()
     super.viewWillDisappear(animated)
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showSettings" {
-      let ctrl = segue.destinationViewController as! SettingsController
+      let ctrl = segue.destination as! SettingsController
       ctrl.form = self.form
     }
   }
   
   //starts timer from the next minute
-  private func startTimer() -> NSTimer {
-    let date = NSDate()
-    let calendar = NSCalendar.currentCalendar()
-    let components = calendar.components([.Era, .Year, .Month, .Day, .Hour, .Minute], fromDate: date)
-    components.minute += 1
+  fileprivate func startTimer() -> Timer {
+    let date = Date()
+    let calendar = Calendar.current
+    var components = (calendar as NSCalendar).components([.era, .year, .month, .day, .hour, .minute], from: date)
+    components.minute? += 1
     components.second = 0
-    let nextMinuteDate = calendar.dateFromComponents(components)
+    let nextMinuteDate = calendar.date(from: components)
     NSLog("will start timer at \(nextMinuteDate)")
-    let timer = NSTimer(fireDate: nextMinuteDate!, interval: 60, target: self, selector: #selector(FormViewController.scheduledUpdate), userInfo: nil, repeats: true)
-    NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
+    let timer = Timer(fireAt: nextMinuteDate!, interval: 60, target: self, selector: #selector(FormViewController.scheduledUpdate), userInfo: nil, repeats: true)
+    RunLoop.main.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
     return timer
   }
   
@@ -91,7 +91,7 @@ class FormViewController: UIViewController {
     update(false)
   }
   
-  func update(reloadNotifications:Bool) {
+  func update(_ reloadNotifications:Bool) {
     if (reloadNotifications) {
       let formId = formService.getActiveSurveyId()
       if formId == nil {
@@ -101,46 +101,46 @@ class FormViewController: UIViewController {
       self.nextNotification = notificationService.nextNotificationDate(formId!)
       self.lastNotification = notificationService.lastNotificationDate(formId!)
       if self.nextNotification != nil {
-        self.notificationTimeLabel.text = "Next notification at: \(self.dateFormatter.stringFromDate(self.nextNotification!))"
+        self.notificationTimeLabel.text = "Next notification at: \(self.dateFormatter.string(from: self.nextNotification!))"
       }
     }
     
     var showActions = false
     //TODO move to formService
     if let lastNotification = self.lastNotification, let form = self.form {
-      let activeUntil = NSDate(timeInterval: Double(form.activeTime), sinceDate: lastNotification)
-      let now = NSDate()
+      let activeUntil = Date(timeInterval: Double(form.activeTime), since: lastNotification)
+      let now = Date()
       if activeUntil.isAfter(now) {
         NSLog("Form \(form.id) is active until: \(activeUntil)")
         showActions = true
       } else {
-        self.fillButton.enabled = true
+        self.fillButton.isEnabled = true
       }
       
     }
-    self.remindButton.enabled = true
-    self.remindButton.backgroundColor = self.remindButton.enabled ? ENABLED_COLOR: DISABLED_COLOR
-    self.fillButton.hidden = !showActions
-    self.fillButton.backgroundColor = self.fillButton.enabled ? ENABLED_COLOR: DISABLED_COLOR
-    self.remindButton.hidden = !showActions
+    self.remindButton.isEnabled = true
+    self.remindButton.backgroundColor = self.remindButton.isEnabled ? ENABLED_COLOR: DISABLED_COLOR
+    self.fillButton.isHidden = !showActions
+    self.fillButton.backgroundColor = self.fillButton.isEnabled ? ENABLED_COLOR: DISABLED_COLOR
+    self.remindButton.isHidden = !showActions
   }
   
   
-  @IBAction func onLeaveSurveyClick(sender: AnyObject) {
-    leaveButton.enabled = false
+  @IBAction func onLeaveSurveyClick(_ sender: AnyObject) {
+    leaveButton.isEnabled = false
     formService.leaveActiveSurvey()
-    self.leaveButton.enabled = true
-    dismissViewControllerAnimated(true, completion: nil)
+    self.leaveButton.isEnabled = true
+    dismiss(animated: true, completion: nil)
   }
   
-  @IBAction func onFillSurveyClick(sender: UIButton) {
-    self.fillButton.enabled = false
-    if let form = self.form, lastNotificationData = notificationService.getLastNotificationData() {
+  @IBAction func onFillSurveyClick(_ sender: UIButton) {
+    self.fillButton.isEnabled = false
+    if let form = self.form, let lastNotificationData = notificationService.getLastNotificationData() {
       let idString = "\(deviceId)_\(lastNotificationData["notificationId"] as! String)"
       print("ID \(idString), URL \(form.url)")
       
-      if let url = NSURL(string: form.url.stringByReplacingOccurrencesOfString("**id**", withString: idString)) {
-        UIApplication.sharedApplication().openURL(url)
+      if let url = URL(string: form.url.replacingOccurrences(of: "**id**", with: idString)) {
+        UIApplication.shared.openURL(url)
       } else {
         self.log.log("Failed to build url for form: \(form.id)")
       }
@@ -149,12 +149,12 @@ class FormViewController: UIViewController {
     }
   }
   
-  @IBAction func onPostponelick(sender: UIButton) {
+  @IBAction func onPostponelick(_ sender: UIButton) {
     if let lastNotificationData = notificationService.getLastNotificationData() {
       self.notificationService.schedulePostponed(lastNotificationData["formId"] as! String, notificationId: lastNotificationData["notificationId"] as! String, after: POSTPONE_INTERVAL)
       self.update(true)
     }
-    self.remindButton.enabled = false
+    self.remindButton.isEnabled = false
     self.remindButton.backgroundColor = DISABLED_COLOR
     
   }

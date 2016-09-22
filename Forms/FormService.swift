@@ -11,32 +11,31 @@ import UIKit
 
 class FormService {
   static let instance = FormService();
-  let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
   let connector = FormDataConnector.instance
   let notificationService = NotificationService.instance
   let logger = Logger.instance
   var activeSurvey:Form? = nil;
   
-  func joinSurvey(id: String, callback: (Form?) -> Void) {
+  func joinSurvey(_ id: String, callback: @escaping (Form?) -> Void) {
     return connector.loadOne(id, handler: {
       formData in
       if let form = formData {
         self.joinSurvey(form)
-        return dispatch_async(dispatch_get_main_queue()) {
+        return DispatchQueue.main.async {
           callback(form)
         }
       }
-      dispatch_async(dispatch_get_main_queue()) {
+      DispatchQueue.main.async {
         callback(nil)
       }
     })
   }
   
-  func joinSurvey(form: Form) {
+  func joinSurvey(_ form: Form) {
     form.accepted = true;
-    let date = NSDate()
+    let date = Date()
     self.notificationService.cancelNotifications(form.id)
-    for (index,time) in form.notificationTimes.enumerate() {
+    for (index,time) in form.notificationTimes.enumerated() {
       self.notificationService.schedule(form.id, notificationId: "\(index + 1))", time: time, fromDate: date)
     }
     self.setActive(form)
@@ -59,15 +58,15 @@ class FormService {
     return nil
   }
   
-  func setActive(form: Form) {
-    NSUserDefaults.standardUserDefaults().setValue(form.toJsonString(), forKey: "activeForm")
+  func setActive(_ form: Form) {
+    UserDefaults.standard.setValue(form.toJsonString(), forKey: "activeForm")
   }
   func clearActive() {
-    NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "activeForm")
+    UserDefaults.standard.setValue(nil, forKey: "activeForm")
   }
   
   func loadActive() -> Form? {
-    let data = NSUserDefaults.standardUserDefaults().stringForKey("activeForm")
+    let data = UserDefaults.standard.string(forKey: "activeForm")
 
     if let json = data {
       do {

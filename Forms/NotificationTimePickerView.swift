@@ -11,7 +11,7 @@ import UIKit
 
 class NotificationTimePickerView: UITableViewCell {
   
-  var timeChangeHandler: (Time -> Void)?
+  var timeChangeHandler: ((Time) -> Void)?
   
   @IBOutlet weak var label: UILabel!
   @IBOutlet weak var timePicker: UIDatePicker!

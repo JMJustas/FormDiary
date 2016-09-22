@@ -8,44 +8,44 @@
 
 import Foundation
 
-extension NSDate {
-    func isBefore(date: NSDate) -> Bool {
-        return self.timeIntervalSinceDate(date) < 0
+extension Date {
+    func isBefore(_ date: Date) -> Bool {
+        return self.timeIntervalSince(date) < 0
     }
     
-    func isAfter(date: NSDate) -> Bool {
-        return self.timeIntervalSinceDate(date) > 0
+    func isAfter(_ date: Date) -> Bool {
+        return self.timeIntervalSince(date) > 0
     }
     
 }
 
 extension Int {
-    var day: (Int, NSCalendarUnit) {
-        return (self, NSCalendarUnit.Day)
+    var day: (Int, NSCalendar.Unit) {
+        return (self, NSCalendar.Unit.day)
     }
     
-    var month: (Int, NSCalendarUnit) {
-        return (self, NSCalendarUnit.Month)
+    var month: (Int, NSCalendar.Unit) {
+        return (self, NSCalendar.Unit.month)
     }
     
-    var year: (Int, NSCalendarUnit) {
-        return (self, NSCalendarUnit.Year)
+    var year: (Int, NSCalendar.Unit) {
+        return (self, NSCalendar.Unit.year)
     }
 }
 
 ////
-public func + (date: NSDate, tuple: (value: Int, unit: NSCalendarUnit)) -> NSDate {
-    return NSCalendar.currentCalendar().dateByAddingUnit(tuple.unit, value: tuple.value, toDate: date, options: .MatchFirst)!
+public func + (date: Date, tuple: (value: Int, unit: NSCalendar.Unit)) -> Date {
+    return (Calendar.current as NSCalendar).date(byAdding: tuple.unit, value: tuple.value, to: date, options: .matchFirst)!
 }
 
-public func - (date: NSDate, tuple: (value: Int, unit: NSCalendarUnit)) -> NSDate {
-    return NSCalendar.currentCalendar().dateByAddingUnit(tuple.unit, value: (-tuple.value), toDate: date, options:.MatchFirst)!
+public func - (date: Date, tuple: (value: Int, unit: NSCalendar.Unit)) -> Date {
+    return (Calendar.current as NSCalendar).date(byAdding: tuple.unit, value: (-tuple.value), to: date, options:.matchFirst)!
 }
 
-public func += (inout date: NSDate, tuple: (value: Int, unit: NSCalendarUnit)) {
-    date =  NSCalendar.currentCalendar().dateByAddingUnit(tuple.unit, value: tuple.value, toDate: date, options:.MatchFirst)!
+public func += (date: inout Date, tuple: (value: Int, unit: NSCalendar.Unit)) {
+    date =  (Calendar.current as NSCalendar).date(byAdding: tuple.unit, value: tuple.value, to: date, options:.matchFirst)!
 }
 
-public func -= (inout date: NSDate, tuple: (value: Int, unit: NSCalendarUnit)) {
-    date =  NSCalendar.currentCalendar().dateByAddingUnit(tuple.unit, value: -tuple.value, toDate: date, options:.MatchFirst)!
+public func -= (date: inout Date, tuple: (value: Int, unit: NSCalendar.Unit)) {
+    date =  (Calendar.current as NSCalendar).date(byAdding: tuple.unit, value: -tuple.value, to: date, options:.matchFirst)!
 }

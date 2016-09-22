@@ -8,14 +8,14 @@
 
 import Foundation
 
-enum FormCreationError: ErrorType {
-  case InvalidJsonString
+enum FormCreationError: Error {
+  case invalidJsonString
 }
 
-enum FormAction: ErrorType {
-  case NoActiveForm
+enum FormAction: Error {
+  case noActiveForm
 }
 
-enum ParsingError : ErrorType {
-  case InvalidInput
+enum ParsingError : Error {
+  case invalidInput
 }

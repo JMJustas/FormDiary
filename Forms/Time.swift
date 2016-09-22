@@ -11,7 +11,7 @@ import Foundation
 class Time: CustomStringConvertible {
     var hour:Int
     var minute: Int
-    let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+    let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
 
     
     init(hour: Int, minute: Int) {
@@ -25,16 +25,16 @@ class Time: CustomStringConvertible {
         minute = Int(String(tokens[1]))!
     }
     
-    init (date: NSDate) {
-        hour = calendar.component(.Hour, fromDate: date)
-        minute = calendar.component(.Minute, fromDate: date)
+    init (date: Date) {
+        hour = (calendar as NSCalendar).component(.hour, from: date)
+        minute = (calendar as NSCalendar).component(.minute, from: date)
     }
     
-    func toTodaysDate() -> NSDate {
-        let components = NSDateComponents()
+    func toTodaysDate() -> Date {
+        var components = DateComponents()
         components.hour = self.hour
         components.minute = self.minute
-        return calendar.dateFromComponents(components)!
+        return calendar.date(from: components)!
     }
     
     var description: String {

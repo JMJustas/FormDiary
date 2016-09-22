@@ -21,10 +21,12 @@ class SettingsController: UITableViewController {
     }
   }
   
-  @IBAction func onBackButtonClick(sender: UIBarButtonItem) {
-    self.navigationController?.popViewControllerAnimated(true)
+  @IBAction func onBackButtonClick(_ sender: UIBarButtonItem) {
+    if let ctrl = self.navigationController {
+      ctrl.popViewController(animated: true)
+    }
   }
-  @IBAction func onSaveButtonClick(sender: UIBarButtonItem) {
+  @IBAction func onSaveButtonClick(_ sender: UIBarButtonItem) {
     if let form = self.form {
       form.notificationTimes = notificationTimes.map({
         notificationTime in
@@ -35,29 +37,31 @@ class SettingsController: UITableViewController {
       })
       formService.joinSurvey(form)
     }
-    self.navigationController?.popViewControllerAnimated(true)
+    if let ctrl = self.navigationController {
+      ctrl.popViewController(animated: true)
+    }
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) ->Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->Int {
     return notificationTimes.count
   }
   
-  func timePickerChanged(picker: UIDatePicker) {
+  func timePickerChanged(_ picker: UIDatePicker) {
     notificationTimes[picker.tag].setTime(Time(date: picker.date))
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell =
-      self.tableView.dequeueReusableCellWithIdentifier(
-        "timePicker", forIndexPath: indexPath) as! NotificationTimePickerView
+      self.tableView.dequeueReusableCell(
+        withIdentifier: "timePicker", for: indexPath) as! NotificationTimePickerView
     
-    let notificationTime = notificationTimes[indexPath.row]
+    let notificationTime = notificationTimes[(indexPath as NSIndexPath).row]
     
     cell.label.text = notificationTime.label
-    cell.timePicker.date = notificationTime.resolveTime().toTodaysDate()
-    cell.timePicker.tag = indexPath.row
-    cell.timePicker.addTarget(self, action: #selector(SettingsController.timePickerChanged), forControlEvents: UIControlEvents.ValueChanged)
+    cell.timePicker.date = notificationTime.resolveTime().toTodaysDate() as Date
+    cell.timePicker.tag = (indexPath as NSIndexPath).row
+    cell.timePicker.addTarget(self, action: #selector(SettingsController.timePickerChanged), for: UIControlEvents.valueChanged)
     return cell
   }
 }

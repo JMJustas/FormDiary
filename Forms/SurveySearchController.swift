@@ -13,7 +13,7 @@ class SurveySearchController: UIViewController {
   
   let formService = FormService.instance
   let settingsService = SettingsService.instance
-  let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+  let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
   var form: Form?
   
   @IBOutlet weak var formSearchField: UITextField!
@@ -23,19 +23,19 @@ class SurveySearchController: UIViewController {
     view.addSubview(indicator)
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     formSearchField.text = nil
   }
   
  
-  @IBAction func onJoinClick(sender: UIButton) {
+  @IBAction func onJoinClick(_ sender: UIButton) {
     if !Reachability.isConnectedToNetwork() {
       return AlertFactory.noInternetConnection().show()
     }
     return joinForm(formSearchField.text)
   }
   
-  func joinForm(idString:String?) {
+  func joinForm(_ idString:String?) {
     if let id = idString {
       self.indicator.startAnimating()
       
@@ -46,7 +46,7 @@ class SurveySearchController: UIViewController {
           self.form = form
           let storyboard = UIStoryboard(name: "ActiveSurvey", bundle: nil)
           let ctrl = storyboard.instantiateInitialViewController()
-          self.presentViewController(ctrl!, animated: false, completion: nil)
+          self.present(ctrl!, animated: false, completion: nil)
           self.showProfileForm(form)  
         } else {
           //TODO show error toast
@@ -55,13 +55,13 @@ class SurveySearchController: UIViewController {
     }
   }
   
-  func showProfileForm(form: Form) {
+  func showProfileForm(_ form: Form) {
     if form.profileFormUrl.isEmpty {
       return
     }
     
-    if let url = NSURL(string: form.profileFormUrl) {
-      UIApplication.sharedApplication().openURL(url)
+    if let url = URL(string: form.profileFormUrl) {
+      UIApplication.shared.openURL(url)
     }
   }
 }

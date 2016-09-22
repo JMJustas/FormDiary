@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 extension UILocalNotification {
-    func nextFireDate () -> NSDate? {
-        let now = NSDate()
+    func nextFireDate () -> Date? {
+        let now = Date()
         if let fireDate = self.fireDate {
-            var result = NSDate(timeIntervalSince1970: fireDate.timeIntervalSince1970)
+            var result = Date(timeIntervalSince1970: fireDate.timeIntervalSince1970)
             while (true) {
                 if (!result.isBefore(now)) {
                     return result
@@ -23,13 +23,13 @@ extension UILocalNotification {
             return nil
         }
     }
-    func lastFireDate () -> NSDate? {
-        let now = NSDate()
+    func lastFireDate () -> Date? {
+        let now = Date()
         if let fireDate = self.fireDate {
             if fireDate.isAfter(now) {
                 return nil
             }
-            var result = NSDate(timeIntervalSince1970: fireDate.timeIntervalSince1970)
+            var result = Date(timeIntervalSince1970: fireDate.timeIntervalSince1970)
             while (!(result + (1, self.repeatInterval)).isAfter(now)) {
                 result += (1, self.repeatInterval)
             }

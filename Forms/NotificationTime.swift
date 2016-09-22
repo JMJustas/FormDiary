@@ -32,7 +32,7 @@ class NotificationTime : CustomStringConvertible {
   }
   
   
-  func setTime(time: Time) {
+  func setTime(_ time: Time) {
     self.hour = time.hour
     self.minute = time.minute
   }

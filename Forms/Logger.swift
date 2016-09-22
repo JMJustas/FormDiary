@@ -11,7 +11,7 @@ import Foundation
 class Logger {
     static let instance = Logger();
     
-    func log(msg: String) {
+    func log(_ msg: String) {
         NSLog(msg)
     }
 }
