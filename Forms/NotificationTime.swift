@@ -11,7 +11,7 @@ import Foundation
 class NotificationTime : CustomStringConvertible {
   var hour: Int
   var minute: Int
-  var dayOfWeek: String = "ad"; //stands for "all days"
+  var dayOfWeek: String
   var label: String
   let settingsService = SettingsService.instance
   
@@ -23,7 +23,7 @@ class NotificationTime : CustomStringConvertible {
     var tokens = timestamp.characters.split{$0 == ":"};
     hour = Int(String(tokens[0]))!;
     minute = Int(String(tokens[1]))!;
-    dayOfWeek = String(tokens[2]);
+    dayOfWeek = tokens.count > 2 ? String(tokens[2]): "ed";
     
     label = tokens.count > 3 ? String(tokens[3]) : "";
   }

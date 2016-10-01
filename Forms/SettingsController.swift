@@ -15,6 +15,10 @@ class SettingsController: UITableViewController {
   var notificationTimes: [NotificationTime] = []
   let formService = FormService.instance
   
+  let WEEKEND = "weekends"
+  let WORKDAY = "working days"
+  let EVERYDAY = "every day"
+  
   override func viewDidLoad() {
     if let form = self.form {
       self.notificationTimes = form.notificationTimes
@@ -58,10 +62,26 @@ class SettingsController: UITableViewController {
     
     let notificationTime = notificationTimes[(indexPath as NSIndexPath).row]
     
-    cell.label.text = notificationTime.label
+    cell.label.text = self.buildDisplayLabel(notificationTime: notificationTime)
     cell.timePicker.date = notificationTime.resolveTime().toTodaysDate() as Date
     cell.timePicker.tag = (indexPath as NSIndexPath).row
     cell.timePicker.addTarget(self, action: #selector(SettingsController.timePickerChanged), for: UIControlEvents.valueChanged)
     return cell
+  }
+  
+  func buildDisplayLabel(notificationTime: NotificationTime) -> String {
+    var label = "";
+    if notificationTime.dayOfWeek == "we" {
+      label.append(WEEKEND)
+    } else if notificationTime.dayOfWeek == "wd" {
+      label.append(WORKDAY)
+    } else {
+      label.append(EVERYDAY)
+    }
+    
+    if !notificationTime.label.isEmpty {
+      label.append(", \(notificationTime.label)")
+    }
+    return label
   }
 }
