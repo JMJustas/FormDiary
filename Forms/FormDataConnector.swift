@@ -9,53 +9,90 @@
 import Foundation
 
 class FormDataConnector {
-    static let instance = FormDataConnector()
-    static let TEST_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=nIgQMgbhoEw2WiX7a4t8SbwNKRsZbmtjCrsyRzlH36YGJw4vOE9ik_xVsawhypt9ylVAji3_lg-BQfQ4L9lkp80uAz_3033mm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnHAdZxMGFWO0vYyNAwealdAQtpUfH8HGJsWbmN1e_T8vdcay2QGMxUfL96ChSmoQrKOIp7sEUsJ2&lib=MynG0CqcJILwXYfWRoICq9gGgahm_W7Lh";
-    
-    let API_URL = TEST_URL;
-    
-    static let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-    let session = NSURLSession(configuration: config)
-    
-    func loadFormsData(handler: ([Form]) -> Void) {
-        NSLog("Loading data...")
-        session.dataTaskWithURL(NSURL(string: API_URL)!, completionHandler: {(data, response, error) in
-            if let err = error {
-                NSLog("ERROR while fetching forms data: \(err)")
-            } else if let payload = data {
-                do {
-                    let json = try NSJSONSerialization.JSONObjectWithData(payload, options: []) as! [String: AnyObject]
-                    if let status = json["status"] as? String {
-                        if let entries = json ["data"] as? [[String: AnyObject]] {
-                            if status == "OK" {
-                                handler(self.parseEntries(entries))
-                                return
-                            }
-                        }
-                    }
-                    NSLog("Invalid JSON: \(json)")
-                } catch let error as NSError {
-                    NSLog("Failed to parse JSON: \(error.localizedDescription)")
-                }
-            } else {
-                NSLog("ERROR parsing fetched forms data")
+  static let instance = FormDataConnector()
+  static let TEST_URL = "https://script.google.com/macros/s/AKfycbxH1Kzc7inDnIBiGCyhohv5Neji9riFmLRsPXidQTZGhesaQ1E/exec";
+  
+  let API_URL = TEST_URL;
+  
+  static let config = URLSessionConfiguration.default
+  let session = URLSession(configuration: config)
+  
+  func loadOne(_ formId: String, handler: @escaping (Form?) -> Void) {
+    session.dataTask(with: URL(string: "\(API_URL)?formId=\(formId)")!, completionHandler: {(data, response, error) in
+      
+      if let payload = data {
+        do {
+          let json = try JSONSerialization.jsonObject(with: payload, options: []) as! [String: AnyObject]
+          if let status = json["status"] as? String{
+            if status == "OK" {
+              handler(self.parseForm(json["data"]))
+              return;
             }
-            handler([])
             
-        }).resume();
-
-    }
-    
-    func parseEntries(entries: [[String: AnyObject]]) -> [Form] {
-        var result: [Form] = []
-        for entry in entries {
-            do {
-                let form = try Form (json: entry)
-                result.append(form)
-            } catch let error as NSError {
-                NSLog("Failed to parse JSON: \(error.localizedDescription)")
-            }
+          }
+          
+        } catch {
+          handler(nil)
+          return
         }
-        return result
+      }
+      handler(nil)
+      return
+      
+      
+    }).resume()
+  }
+  
+  func parseForm(_ entry: AnyObject?) -> Form? {
+    do {
+      if let json = entry as? [String:AnyObject]{
+        return try Form (json: json)
+      }
+    } catch {
+      return nil
     }
+    return nil
+  }
+  
+  func loadFormsData(_ handler: @escaping ([Form]) -> Void) {
+    NSLog("Loading data...")
+    session.dataTask(with: URL(string: API_URL)!, completionHandler: {(data, response, error) in
+      if let err = error {
+        NSLog("ERROR while fetching forms data: \(err)")
+      } else if let payload = data {
+        do {
+          let json = try JSONSerialization.jsonObject(with: payload, options: []) as! [String: AnyObject]
+          if let status = json["status"] as? String {
+            if let entries = json ["data"] as? [[String: AnyObject]] {
+              if status == "OK" {
+                handler(self.parseEntries(entries))
+                return
+              }
+            }
+          }
+          NSLog("Invalid JSON: \(json)")
+        } catch let error as NSError {
+          NSLog("Failed to parse JSON: \(error.localizedDescription)")
+        }
+      } else {
+        NSLog("ERROR parsing fetched forms data")
+      }
+      handler([])
+      
+    }).resume();
+    
+  }
+  
+  func parseEntries(_ entries: [[String: AnyObject]]) -> [Form] {
+    var result: [Form] = []
+    for entry in entries {
+      do {
+        let form = try Form (json: entry)
+        result.append(form)
+      } catch let error as NSError {
+        NSLog("Failed to parse JSON: \(error.localizedDescription)")
+      }
+    }
+    return result
+  }
 }

@@ -15,14 +15,14 @@ class IdService {
     var _ID: String;
     
     init() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let id = defaults.stringForKey(ID_KEY) {
+        let defaults = UserDefaults.standard
+        if let id = defaults.string(forKey: ID_KEY) {
             _ID = id
             NSLog("ID exists: \(_ID)")
         } else {
-            _ID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+            _ID = UIDevice.current.identifierForVendor!.uuidString
             NSLog("created new device id: \(_ID)")
-            defaults.setObject(_ID, forKey: ID_KEY)
+            defaults.set(_ID, forKey: ID_KEY)
         }
     }
 }

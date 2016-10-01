@@ -11,23 +11,23 @@ import Foundation
 class SettingsService {
     static let instance = SettingsService()
     
-    func setWorkStartTime(time: Time) {
-        NSUserDefaults.standardUserDefaults().setValue(time.description, forKey: "workStartTime")
+    func setWorkStartTime(_ time: Time) {
+        UserDefaults.standard.setValue(time.description, forKey: "workStartTime")
     }
     
-    func setWorkEndTime(time: Time) {
-        NSUserDefaults.standardUserDefaults().setValue(time.description, forKey: "workEndTime")
+    func setWorkEndTime(_ time: Time) {
+        UserDefaults.standard.setValue(time.description, forKey: "workEndTime")
     }
     
     func getWorkStartTime() -> Time? {
-        if let timestamp = NSUserDefaults.standardUserDefaults().stringForKey("workStartTime") {
+        if let timestamp = UserDefaults.standard.string(forKey: "workStartTime") {
             return Time(timestamp: timestamp)
         }
         return nil
     }
     
     func getWorkEndTime() -> Time? {
-        if let timestamp = NSUserDefaults.standardUserDefaults().stringForKey("workEndTime") {
+        if let timestamp = UserDefaults.standard.string(forKey: "workEndTime") {
             return Time(timestamp: timestamp)
         }
         return nil

@@ -10,29 +10,58 @@ import Foundation
 import UIKit
 
 class SettingsController: UITableViewController {
-    
-    @IBOutlet weak var workStartTimePicker: UIDatePicker!
-    @IBOutlet weak var workEndTimePicker: UIDatePicker!
-    
-    let settingsService = SettingsService.instance
-    
-    override func viewDidLoad() {
-        if let workStartTime = settingsService.getWorkStartTime() {
-            workStartTimePicker.date = workStartTime.toTodaysDate()
-        }
+  
+  var form: Form?
+  var notificationTimes: [NotificationTime] = []
+  let formService = FormService.instance
+  
+  override func viewDidLoad() {
+    if let form = self.form {
+      self.notificationTimes = form.notificationTimes
+    }
+  }
+  
+  @IBAction func onBackButtonClick(_ sender: UIBarButtonItem) {
+    if let ctrl = self.navigationController {
+      ctrl.popViewController(animated: true)
+    }
+  }
+  @IBAction func onSaveButtonClick(_ sender: UIBarButtonItem) {
+    if let form = self.form {
+      form.notificationTimes = notificationTimes.map({
+        notificationTime in
+        let res = NotificationTime(timestamp: notificationTime.description)
         
-        if let workEndTime = settingsService.getWorkEndTime() {
-           workEndTimePicker.date = workEndTime.toTodaysDate()
-        }
+
+        return res
+      })
+      formService.joinSurvey(form)
     }
+    if let ctrl = self.navigationController {
+      ctrl.popViewController(animated: true)
+    }
+  }
+  
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->Int {
+    return notificationTimes.count
+  }
+  
+  func timePickerChanged(_ picker: UIDatePicker) {
+    notificationTimes[picker.tag].setTime(Time(date: picker.date))
+  }
+  
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    @IBAction func onBackButtonClick(sender: UIBarButtonItem) {
-        saveSettings()
-        self.navigationController?.popViewControllerAnimated(true)
-    }
+    let cell =
+      self.tableView.dequeueReusableCell(
+        withIdentifier: "timePicker", for: indexPath) as! NotificationTimePickerView
     
-    func saveSettings() {
-        settingsService.setWorkStartTime(Time(date: workStartTimePicker.date))
-        settingsService.setWorkEndTime(Time(date: workEndTimePicker.date))
-    }
+    let notificationTime = notificationTimes[(indexPath as NSIndexPath).row]
+    
+    cell.label.text = notificationTime.label
+    cell.timePicker.date = notificationTime.resolveTime().toTodaysDate() as Date
+    cell.timePicker.tag = (indexPath as NSIndexPath).row
+    cell.timePicker.addTarget(self, action: #selector(SettingsController.timePickerChanged), for: UIControlEvents.valueChanged)
+    return cell
+  }
 }

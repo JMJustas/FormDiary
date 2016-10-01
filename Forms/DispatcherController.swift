@@ -12,16 +12,15 @@ import UIKit
 class DispatcherController: UIViewController {
     let formService = FormService.instance
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let storyboardName = formService.getActiveSurveyId() == nil ?
         "JoinSurvey" :
         "ActiveSurvey"
-        
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         let ctrl = storyboard.instantiateInitialViewController()
-        self.presentViewController(ctrl!, animated: false, completion: nil)
+        self.present(ctrl!, animated: false, completion: nil)
     }
     
 }
