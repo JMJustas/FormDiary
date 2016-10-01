@@ -24,7 +24,8 @@ class NotificationTime : CustomStringConvertible {
     hour = Int(String(tokens[0]))!;
     minute = Int(String(tokens[1]))!;
     dayOfWeek = String(tokens[2]);
-    label = String(tokens[3]);
+    
+    label = tokens.count > 3 ? String(tokens[3]) : "";
   }
   
   var description: String {
