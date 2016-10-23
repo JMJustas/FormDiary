@@ -35,8 +35,8 @@ class FormService {
     form.accepted = true;
     let date = Date()
     self.notificationService.cancelNotifications(form.id)
-    for (index,time) in form.notificationTimes.enumerated() {
-      self.notificationService.schedule(form.id, notificationId: "\(index + 1))", time: time, fromDate: date)
+    for time in form.notificationTimes {
+      self.notificationService.schedule(form.id, notificationId: time.label.isEmpty ? time.description : time.label, time: time, fromDate: date)
     }
     self.setActive(form)
   }

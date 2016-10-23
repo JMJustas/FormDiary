@@ -133,10 +133,15 @@ class FormViewController: UIViewController {
   @IBAction func onFillSurveyClick(_ sender: UIButton) {
     self.fillButton.isEnabled = false
     if let form = self.form, let lastNotificationData = notificationService.getLastNotificationData() {
-      let idString = "\(deviceId)_\(lastNotificationData["notificationId"] as! String)"
-      print("ID \(idString), URL \(form.url)")
       
-      if let url = URL(string: form.url.replacingOccurrences(of: "**id**", with: idString)) {
+      
+      var urlString = form.url
+        .replacingOccurrences(of: "**id**", with: deviceId)
+      if let notificationId = (lastNotificationData["notificationId"] as! String).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+      {
+        urlString = urlString.replacingOccurrences(of: "**notificationId**", with: notificationId)
+      }
+      if let url = URL(string: urlString) {
         UIApplication.shared.openURL(url)
         notificationService.clearLastNotificationDate()
         self.fillButton.isEnabled = true
