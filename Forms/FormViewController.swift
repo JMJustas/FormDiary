@@ -18,7 +18,7 @@ class FormViewController: UIViewController {
   @IBOutlet weak var fillButton: UIButton!
   @IBOutlet weak var remindButton: UIButton!
   
-  let POSTPONE_INTERVAL = 20;
+  let DEFAULT_POSTPONE_INTERVAL = 600;
   let deviceId = IdService.instance._ID
   let ENABLED_COLOR = UIColor(red:0.17, green:0.29, blue:0.58, alpha:1.0)
   let DISABLED_COLOR = UIColor(red:0.86, green:0.86, blue:0.86, alpha:1.0)
@@ -106,17 +106,14 @@ class FormViewController: UIViewController {
     }
     
     var showActions = false
-    //TODO move to formService
+    
     if let lastNotification = self.lastNotification, let form = self.form {
       let activeUntil = Date(timeInterval: Double(form.activeTime), since: lastNotification)
       let now = Date()
       if activeUntil.isAfter(now) {
         NSLog("Form \(form.id) is active until: \(activeUntil)")
         showActions = true
-      } else {
-        self.fillButton.isEnabled = true
       }
-      
     }
     self.remindButton.isEnabled = true
     self.remindButton.backgroundColor = self.remindButton.isEnabled ? ENABLED_COLOR: DISABLED_COLOR
@@ -141,6 +138,8 @@ class FormViewController: UIViewController {
       
       if let url = URL(string: form.url.replacingOccurrences(of: "**id**", with: idString)) {
         UIApplication.shared.openURL(url)
+        notificationService.clearLastNotificationDate()
+        self.fillButton.isEnabled = true
       } else {
         self.log.log("Failed to build url for form: \(form.id)")
       }
@@ -151,7 +150,7 @@ class FormViewController: UIViewController {
   
   @IBAction func onPostponelick(_ sender: UIButton) {
     if let lastNotificationData = notificationService.getLastNotificationData() {
-      self.notificationService.schedulePostponed(lastNotificationData["formId"] as! String, notificationId: lastNotificationData["notificationId"] as! String, after: POSTPONE_INTERVAL)
+      self.notificationService.schedulePostponed(lastNotificationData["formId"] as! String, notificationId: lastNotificationData["notificationId"] as! String, after: DEFAULT_POSTPONE_INTERVAL)
       self.update(true)
     }
     self.remindButton.isEnabled = false

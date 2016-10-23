@@ -112,6 +112,11 @@ class NotificationService {
         }
         return result
     }
+  
+  func clearLastNotificationDate() -> Void {
+    self.lastNotification = nil
+    UserDefaults.standard.removeObject(forKey: "lastNotificationTime")
+  }
     
 //    loads last fired notification date for given form
     func lastNotificationDate(_ id: String) -> Date? {
