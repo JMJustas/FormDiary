@@ -46,8 +46,13 @@ class FormViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    print("will appear")
     self.form = formService.loadActive()
+    if checkIfFormExpired() {
+      print("expired")
+      formService.leaveActiveSurvey()
+      dismiss(animated: false, completion: nil)
+      return
+    }
     self.leaveButton.isEnabled = true
     self.title = self.form?.title
     descriptionText.text = self.form?.description.replacingOccurrences(of: "\\n", with: "\n")
@@ -69,6 +74,15 @@ class FormViewController: UIViewController {
       let ctrl = segue.destination as! SettingsController
       ctrl.form = self.form
     }
+  }
+  
+  func checkIfFormExpired() -> Bool {
+    if let expireTimestamp = self.form?.validUntil {
+      let expirationDate = Date(timeIntervalSince1970: expireTimestamp)
+      let now = Date()
+      return expirationDate.isBefore(now)
+    }
+    return true
   }
   
   //starts timer from the next minute

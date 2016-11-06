@@ -18,10 +18,13 @@ class FormDataConnector {
   let session = URLSession(configuration: config)
   
   func loadOne(_ formId: String, handler: @escaping (Form?) -> Void) {
-    session.dataTask(with: URL(string: "\(API_URL)?formId=\(formId)")!, completionHandler: {(data, response, error) in
+    let url =  "\(API_URL)?formId=\(formId)"
+  
+    session.dataTask(with: URL(string: url)!, completionHandler: {(data, response, error) in
       
       if let payload = data {
         do {
+          print("LOADED: \(payload)")
           let json = try JSONSerialization.jsonObject(with: payload, options: []) as! [String: AnyObject]
           if let status = json["status"] as? String{
             if status == "OK" {
