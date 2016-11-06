@@ -34,11 +34,20 @@ class SettingsController: UITableViewController {
     if let form = self.form {
       form.notificationTimes = notificationTimes.map({
         notificationTime in
-        let res = NotificationTime(timestamp: notificationTime.description)
-        
-
-        return res
+        return NotificationTime(timestamp: notificationTime.description)
       })
+      
+      for t1 in form.notificationTimes {
+        for t2 in form.notificationTimes {
+          if t1 === t2 {
+            continue
+          }
+          if t1.overlaps(other: t2, activeTime: form.activeTime) {
+            return AlertFactory.overlappingNotifications().show()
+          }
+        }
+      }
+      
       formService.joinSurvey(form)
     }
     if let ctrl = self.navigationController {

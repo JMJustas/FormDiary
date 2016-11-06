@@ -64,7 +64,6 @@ class FormViewController: UIViewController {
   }
   
   override func viewWillDisappear(_ animated: Bool) {
-    NSLog("closing timer")
     self.timer?.invalidate()
     super.viewWillDisappear(animated)
   }
@@ -107,7 +106,6 @@ class FormViewController: UIViewController {
     if (reloadNotifications) {
       let formId = formService.getActiveSurveyId()
       if formId == nil {
-        NSLog("NO ACTIVE FORM")
         return
       }
       self.nextNotification = notificationService.nextNotificationDate(formId!)

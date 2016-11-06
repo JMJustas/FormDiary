@@ -16,4 +16,7 @@ class AlertFactory {
   class func failedToLoadData() -> UIAlertView {
     return UIAlertView(title: "Failed to load form data", message: "Make sure form exists in google spreadsheet.", delegate: nil, cancelButtonTitle: "OK")
   }
+  class func overlappingNotifications() -> UIAlertView {
+    return UIAlertView(title: "Invalid data", message: "Overlapping.", delegate: nil, cancelButtonTitle: "OK")
+  }
 }

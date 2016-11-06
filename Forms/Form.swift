@@ -27,7 +27,7 @@ class Form : CustomStringConvertible {
   var profileFormUrl: String
   var validUntil: Double //timestamp
   
-  init(id: String, title: String, description: String, url: String, notificationTimes: [String], profileFormUrl: String, postponeLimit:Int = 0, postponeCount:Int = 0, postponeInterval:Int = 600, accepted:Bool = false, activeTime:Int = 15, validUntil:Double) throws {
+  init(id: String, title: String, description: String, url: String, notificationTimes: [String], profileFormUrl: String, postponeLimit:Int = 0, postponeCount:Int = 0, postponeInterval:Int = 600, accepted:Bool = false, activeTime:Int = 1800, validUntil:Double) throws {
     self.id = id
     self.title = title
     self.description = description
