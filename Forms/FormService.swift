@@ -34,7 +34,7 @@ class FormService {
   func joinSurvey(_ form: Form) {
     form.accepted = true;
     let date = Date()
-    self.notificationService.cancelNotifications(form.id)
+    self.notificationService.cancelAll()
     for time in form.notificationTimes {
       self.notificationService.schedule(form.id, notificationId: time.label.isEmpty ? time.description : time.label, time: time, fromDate: date)
     }
