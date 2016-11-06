@@ -12,11 +12,10 @@ import UIKit
 class FormViewController: UIViewController {
   
   @IBOutlet weak var notificationTimeLabel: UILabel!
-  @IBOutlet weak var titleLabel: UILabel!
-  @IBOutlet var descriptionView: UITextView!
   @IBOutlet weak var leaveButton: UIButton!
   @IBOutlet weak var fillButton: UIButton!
   @IBOutlet weak var remindButton: UIButton!
+  @IBOutlet weak var descriptionText: UITextView!
   
   let DEFAULT_POSTPONE_INTERVAL = 600;
   let deviceId = IdService.instance._ID
@@ -48,11 +47,10 @@ class FormViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     print("will appear")
-    self.remindButton.isHidden = true
-    self.fillButton.isHidden = true
     self.form = formService.loadActive()
     self.leaveButton.isEnabled = true
     self.title = self.form?.title
+    descriptionText.text = self.form?.description.replacingOccurrences(of: "\\n", with: "\n")
     self.update(true)
   }
   
@@ -115,11 +113,10 @@ class FormViewController: UIViewController {
         showActions = true
       }
     }
-    self.remindButton.isEnabled = true
+    self.remindButton.isEnabled = showActions
     self.remindButton.backgroundColor = self.remindButton.isEnabled ? ENABLED_COLOR: DISABLED_COLOR
-    self.fillButton.isHidden = !showActions
+    self.fillButton.isEnabled = showActions
     self.fillButton.backgroundColor = self.fillButton.isEnabled ? ENABLED_COLOR: DISABLED_COLOR
-    self.remindButton.isHidden = !showActions
   }
   
   

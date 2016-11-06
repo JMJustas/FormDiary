@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TUP-qk-Ty6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TUP-qk-Ty6">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,64 +22,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykO-2H-amh">
-                                <frame key="frameInset" minX="213" minY="283" width="175" height="34"/>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0A-I4-NRZ">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.29411764709999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="NVt-eo-40d"/>
-                                    <constraint firstAttribute="width" constant="175" id="eOM-S9-3QZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="M70-dJ-cno"/>
                                 </constraints>
-                                <state key="normal" title="Remind me later">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Leave survey">
+                                    <color key="titleColor" red="1" green="0.10716513551998519" blue="0.18097877812974805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="onPostponelick:" destination="rSg-yd-rS2" eventType="touchUpInside" id="rnp-lx-Wd9"/>
+                                    <action selector="onLeaveSurveyClick:" destination="rSg-yd-rS2" eventType="touchUpInside" id="8Pg-1P-xeD"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" restorationIdentifier="buttonHolder" translatesAutoresizingMaskIntoConstraints="NO" id="a3S-Ir-KSC" userLabel="Button view">
-                                <frame key="frameInset" minY="550" width="600" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0A-I4-NRZ">
-                                        <frame key="frameInset" minY="7" width="600" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Leave survey">
-                                            <color key="titleColor" red="1" green="0.10716513551998519" blue="0.18097877812974805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="onLeaveSurveyClick:" destination="rSg-yd-rS2" eventType="touchUpInside" id="8Pg-1P-xeD"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Y0A-I4-NRZ" firstAttribute="centerX" secondItem="a3S-Ir-KSC" secondAttribute="centerX" id="2OH-Kz-SC0"/>
-                                    <constraint firstItem="Y0A-I4-NRZ" firstAttribute="centerY" secondItem="a3S-Ir-KSC" secondAttribute="centerY" id="Er2-y9-foi"/>
-                                    <constraint firstItem="Y0A-I4-NRZ" firstAttribute="leading" secondItem="a3S-Ir-KSC" secondAttribute="leading" id="NRR-fE-6hm"/>
-                                    <constraint firstAttribute="height" constant="50" id="a2s-X7-nQm"/>
-                                    <constraint firstAttribute="trailing" secondItem="Y0A-I4-NRZ" secondAttribute="trailing" id="gxf-iy-dOb"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yb0-9u-Ofd">
-                                <frame key="frameInset" minX="213" minY="219" width="175" height="34"/>
-                                <color key="backgroundColor" red="0.17254901959999999" green="0.29411764709999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="175" id="Lf4-g8-F04"/>
-                                    <constraint firstAttribute="height" constant="34" id="d5I-UP-ExJ"/>
-                                </constraints>
-                                <state key="normal" title="Fill out the survey">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="onFillSurveyClick:" destination="rSg-yd-rS2" eventType="touchUpInside" id="M1s-VU-h92"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Next notification at: 22:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veW-wU-w0w">
-                                <frame key="frameInset" minX="10" minY="72" width="202" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next notification at: 22:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veW-wU-w0w">
+                                <rect key="frame" x="6" y="72" width="202" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="202" id="6zq-3K-fZN"/>
                                     <constraint firstAttribute="height" constant="28" id="GZa-j5-g6T"/>
@@ -85,18 +46,61 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="trumpas tekstas" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acw-iR-h1f">
+                                <rect key="frame" x="16" y="108" width="343" height="207"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="206.5" id="E3x-yk-kXZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yb0-9u-Ofd">
+                                <rect key="frame" x="0.0" y="507" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.17254901959999999" green="0.29411764709999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NZH-Rf-TCZ"/>
+                                </constraints>
+                                <state key="normal" title="Fill out the survey">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onFillSurveyClick:" destination="rSg-yd-rS2" eventType="touchUpInside" id="M1s-VU-h92"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykO-2H-amh">
+                                <rect key="frame" x="0.0" y="562" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.17254901959999999" green="0.29411764709999999" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="XhM-RB-SAC"/>
+                                </constraints>
+                                <state key="normal" title="Remind me later">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPostponelick:" destination="rSg-yd-rS2" eventType="touchUpInside" id="rnp-lx-Wd9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="acw-iR-h1f" firstAttribute="trailing" secondItem="EKE-nh-PtA" secondAttribute="trailingMargin" id="00g-0F-uKf"/>
                             <constraint firstItem="veW-wU-w0w" firstAttribute="top" secondItem="jwn-UZ-SvI" secondAttribute="bottom" constant="8" symbolic="YES" id="2rD-8z-EEi"/>
+                            <constraint firstAttribute="trailing" secondItem="Yb0-9u-Ofd" secondAttribute="trailing" id="9m8-vi-zCe"/>
+                            <constraint firstItem="Yb0-9u-Ofd" firstAttribute="leading" secondItem="EKE-nh-PtA" secondAttribute="leading" id="COD-4a-vfz"/>
                             <constraint firstItem="ykO-2H-amh" firstAttribute="centerX" secondItem="EKE-nh-PtA" secondAttribute="centerX" id="ChX-M7-jNw"/>
+                            <constraint firstItem="acw-iR-h1f" firstAttribute="leading" secondItem="EKE-nh-PtA" secondAttribute="leadingMargin" id="HNB-Tj-rXs"/>
+                            <constraint firstAttribute="trailing" secondItem="ykO-2H-amh" secondAttribute="trailing" id="P6k-8o-Dw0"/>
                             <constraint firstItem="veW-wU-w0w" firstAttribute="leading" secondItem="EKE-nh-PtA" secondAttribute="leadingMargin" constant="-10" id="PfU-61-UgX"/>
-                            <constraint firstItem="Jjj-zd-gE6" firstAttribute="top" secondItem="a3S-Ir-KSC" secondAttribute="bottom" id="PiM-NV-aWr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="a3S-Ir-KSC" secondAttribute="trailing" constant="-20" id="bgP-oK-ctC"/>
+                            <constraint firstAttribute="trailing" secondItem="Y0A-I4-NRZ" secondAttribute="trailing" id="RK0-hr-ifj"/>
+                            <constraint firstItem="Jjj-zd-gE6" firstAttribute="top" secondItem="Y0A-I4-NRZ" secondAttribute="bottom" id="al8-w1-rvm"/>
+                            <constraint firstItem="ykO-2H-amh" firstAttribute="top" secondItem="Yb0-9u-Ofd" secondAttribute="bottom" constant="5" id="amZ-f3-VfM"/>
+                            <constraint firstItem="Y0A-I4-NRZ" firstAttribute="leading" secondItem="EKE-nh-PtA" secondAttribute="leading" id="bIG-4Q-w4v"/>
+                            <constraint firstAttribute="trailing" secondItem="Yb0-9u-Ofd" secondAttribute="trailing" id="cTa-pF-gyu"/>
                             <constraint firstItem="Yb0-9u-Ofd" firstAttribute="centerX" secondItem="EKE-nh-PtA" secondAttribute="centerX" id="g6f-z5-BEj"/>
-                            <constraint firstItem="a3S-Ir-KSC" firstAttribute="leading" secondItem="EKE-nh-PtA" secondAttribute="leadingMargin" constant="-20" id="gQb-l5-qMP"/>
-                            <constraint firstItem="ykO-2H-amh" firstAttribute="centerY" secondItem="EKE-nh-PtA" secondAttribute="centerY" id="yHP-Gm-jXb"/>
-                            <constraint firstItem="ykO-2H-amh" firstAttribute="top" secondItem="Yb0-9u-Ofd" secondAttribute="bottom" constant="30" id="zu8-bF-A8h"/>
+                            <constraint firstAttribute="trailing" secondItem="ykO-2H-amh" secondAttribute="trailing" id="iRO-l3-wZC"/>
+                            <constraint firstItem="acw-iR-h1f" firstAttribute="top" secondItem="veW-wU-w0w" secondAttribute="bottom" constant="8" id="pe7-Vw-nl1"/>
+                            <constraint firstItem="Y0A-I4-NRZ" firstAttribute="top" secondItem="ykO-2H-amh" secondAttribute="bottom" constant="5" id="zbD-o9-gmF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Jdd-qJ-sEG">
@@ -107,6 +111,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="descriptionText" destination="acw-iR-h1f" id="8lv-Y4-paE"/>
                         <outlet property="fillButton" destination="Yb0-9u-Ofd" id="Rm2-2h-jmu"/>
                         <outlet property="leaveButton" destination="Y0A-I4-NRZ" id="NId-xo-OEA"/>
                         <outlet property="notificationTimeLabel" destination="veW-wU-w0w" id="Pzv-I2-7zk"/>
@@ -115,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQf-wG-nnL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="863" y="-821"/>
+            <point key="canvasLocation" x="861.60000000000002" y="-821.73913043478262"/>
         </scene>
         <!--Settings-->
         <scene sceneID="NuV-hD-EW2">
@@ -127,14 +132,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timePicker" id="iXm-ji-BZo" customClass="NotificationTimePickerView" customModule="Forms" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="180"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iXm-ji-BZo" id="xPC-Hm-r2x">
-                                    <frame key="frameInset" width="375" height="180"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <datePicker contentMode="TopLeft" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="sjC-n7-AZw">
-                                            <frame key="frameInset" minX="8" minY="30" width="584" height="142"/>
+                                            <rect key="frame" x="8" y="30" width="584" height="142"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="142" id="WC5-UF-dLZ"/>
                                             </constraints>
@@ -143,6 +148,7 @@
                                             </date>
                                         </datePicker>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEG-PA-U8g">
+                                            <rect key="frame" x="8" y="8" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
