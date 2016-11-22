@@ -11,12 +11,12 @@ import UIKit
 
 class AlertFactory {
   class func noInternetConnection() -> UIAlertView {
-    return UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+    return UIAlertView(title: NSLocalizedString("ALERT_NO_INTERNET_TITLE", comment: ""), message: NSLocalizedString("ALERT_NO_INTERNET_MESSAGE", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ALERT_OK_BUTTON", comment: ""))
   }
   class func failedToLoadData() -> UIAlertView {
-    return UIAlertView(title: "Failed to load form data", message: "Make sure form exists in google spreadsheet.", delegate: nil, cancelButtonTitle: "OK")
+    return UIAlertView(title: NSLocalizedString("ALERT_FAILED_FORM_LOAD_TITLE", comment: ""), message: NSLocalizedString("ALERT_FAILED_FORM_LOAD_MESSAGE", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ALERT_OK_BUTTON", comment: ""))
   }
   class func overlappingNotifications() -> UIAlertView {
-    return UIAlertView(title: "Invalid data", message: "Overlapping.", delegate: nil, cancelButtonTitle: "OK")
+    return UIAlertView(title: NSLocalizedString("ALERT_OVERLAPPING_NOTIFICATIONS_TITLE", comment: ""), message: NSLocalizedString("ALERT_OVERLAPPING_NOTIFICATIONS_MESSAGE", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("ALERT_OK_BUTTON", comment: ""))
   }
 }
