@@ -19,10 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let dataConnector = FormDataConnector.instance
   
   
-  let alertTitle = "Reminder: fill out the form"
-  let actionFill = "Fill survey"
-  let actionPostpone = "Postpone"
-  let actionSkip = "Skip"
   
   let createDb = false
   let createTestData = false

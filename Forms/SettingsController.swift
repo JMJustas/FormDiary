@@ -88,9 +88,8 @@ class SettingsController: UITableViewController {
       label.append(EVERYDAY)
     }
     
-    if !notificationTime.label.isEmpty {
-      label.append(", \(notificationTime.label)")
-    }
+    label.append(", \(notificationTime.label)")
+    
     return label
   }
 }
