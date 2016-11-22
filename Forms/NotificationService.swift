@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class NotificationService {
-    let alertTitle = "Reminder: fill out the form"
+    let alertTitle = NSLocalizedString("REMINDER_TITLE", comment: "")
     
     static let instance = NotificationService()
     let logger = Logger.instance
