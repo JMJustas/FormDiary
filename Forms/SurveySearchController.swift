@@ -17,10 +17,14 @@ class SurveySearchController: UIViewController {
   var form: Form?
   
   @IBOutlet weak var formSearchField: UITextField!
+  @IBOutlet weak var joinButton: UIButton!
   
   override func viewDidLoad() {
     indicator.center = view.center
     view.addSubview(indicator)
+    self.title = NSLocalizedString("JOIN_VIEW_TITLE", comment: "")
+    self.joinButton.setTitle(NSLocalizedString("JOIN_BUTTON_JOIN", comment: ""), for: .normal)
+    self.formSearchField.placeholder = NSLocalizedString("JOIN_ID_PLACEHOLDER", comment: "")
   }
   
   override func viewWillAppear(_ animated: Bool) {
