@@ -16,6 +16,7 @@ class FormViewController: UIViewController {
   @IBOutlet weak var fillButton: UIButton!
   @IBOutlet weak var remindButton: UIButton!
   @IBOutlet weak var descriptionText: UITextView!
+  @IBOutlet weak var settingsNavButton: UIBarButtonItem!
   
   let DEFAULT_POSTPONE_INTERVAL = 600;
   let deviceId = IdService.instance._ID
@@ -43,6 +44,11 @@ class FormViewController: UIViewController {
     super.viewDidLoad()
     let delegate = UIApplication.shared.delegate as! AppDelegate
     delegate.formView = self;
+    
+    self.fillButton.setTitle(NSLocalizedString("FORM_BUTTON_FILL_SURVEY", comment: ""), for: .normal)
+    self.remindButton.setTitle(NSLocalizedString("FORM_BUTTON_REMIND", comment: ""), for: .normal)
+    self.leaveButton.setTitle(NSLocalizedString("FORM_BUTTON_LEAVE", comment: ""), for: .normal)
+    self.settingsNavButton.title = NSLocalizedString("FORM_BUTTON_SETTINGS", comment: "")
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +117,7 @@ class FormViewController: UIViewController {
       self.nextNotification = notificationService.nextNotificationDate(formId!)
       self.lastNotification = notificationService.lastNotificationDate(formId!)
       if self.nextNotification != nil {
-        self.notificationTimeLabel.text = "Next notification at: \(self.dateFormatter.string(from: self.nextNotification!))"
+        self.notificationTimeLabel.text = "\(NSLocalizedString("FORM_LABEL_NEXT_NOTIFICATION_TIME", comment: "")) \(self.dateFormatter.string(from: self.nextNotification!))"
       }
     }
     

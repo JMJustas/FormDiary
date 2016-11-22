@@ -25,7 +25,7 @@ JOIN_ID_PLACEHOLDER="Enter survey ID";
 JOIN_BUTTON_JOIN="Join";
 
 /* FORM VIEW */
-FORM_LABEL_NEXT_NOTIFICATION_TIME="Next notification at: ";
+FORM_LABEL_NEXT_NOTIFICATION_TIME="Next notification at:";
 FORM_BUTTON_SETTINGS="Settings";
 FORM_BUTTON_FILL_SURVEY="Fill out the survey";
 FORM_BUTTON_REMIND="Remind me later";

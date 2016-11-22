@@ -116,6 +116,7 @@
                         <outlet property="leaveButton" destination="Y0A-I4-NRZ" id="NId-xo-OEA"/>
                         <outlet property="notificationTimeLabel" destination="veW-wU-w0w" id="Pzv-I2-7zk"/>
                         <outlet property="remindButton" destination="ykO-2H-amh" id="xqf-41-l2T"/>
+                        <outlet property="settingsNavButton" destination="9nf-AE-qgn" id="xl9-DG-jfR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQf-wG-nnL" userLabel="First Responder" sceneMemberID="firstResponder"/>
