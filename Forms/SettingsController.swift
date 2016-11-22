@@ -15,11 +15,18 @@ class SettingsController: UITableViewController {
   var notificationTimes: [NotificationTime] = []
   let formService = FormService.instance
   
-  let WEEKEND = "weekends"
-  let WORKDAY = "working days"
-  let EVERYDAY = "every day"
+  @IBOutlet weak var btnSave: UIBarButtonItem!
+  @IBOutlet weak var btnCancel: UIBarButtonItem!
+  
+  let WEEKEND = NSLocalizedString("SETTINGS_LABEL_WEEKENDS", comment: "")
+  let WORKDAY = NSLocalizedString("SETTINGS_LABEL_WORKING_DAYS", comment: "")
+  let EVERYDAY = NSLocalizedString("SETTINGS_LABEL_EVERY_DAY", comment: "")
   
   override func viewDidLoad() {
+    self.title = NSLocalizedString("SETTINGS_VIEW_TITLE", comment: "")
+    self.btnCancel.title = NSLocalizedString("SETTINGS_BUTTON_CANCEL", comment: "")
+
+    self.btnSave.title = NSLocalizedString("SETTINGS_BUTTON_SAVE", comment: "")
     if let form = self.form {
       self.notificationTimes = form.notificationTimes
     }

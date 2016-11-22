@@ -178,18 +178,22 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" id="mAF-KW-l5K">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jlK-6e-YXl">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jlK-6e-YXl">
                             <connections>
                                 <action selector="onBackButtonClick:" destination="awO-Ro-ALm" id="4IR-rD-CVI"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Bt8-ta-cXy">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Bt8-ta-cXy">
                             <connections>
                                 <action selector="onSaveButtonClick:" destination="awO-Ro-ALm" id="rfp-sF-0ay"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="jlK-6e-YXl" id="jqN-Hv-wb9"/>
+                        <outlet property="btnSave" destination="Bt8-ta-cXy" id="9tB-xi-fWP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12V-mT-fVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
