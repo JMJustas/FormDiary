@@ -7,34 +7,33 @@
  */
 
 /* ALERTS */
-ALERT_OK_BUTTON="OK";
-ALERT_NO_INTERNET_TITLE="No Internet Connection";
-ALERT_NO_INTERNET_MESSAGE="Make sure your device is connected to the internet.";
-ALERT_FAILED_FORM_LOAD_TITLE="Failed to load form data";
-ALERT_FAILED_FORM_LOAD_MESSAGE="Make sure form exists in google spreadsheet.";
-ALERT_OVERLAPPING_NOTIFICATIONS_TITLE="Invalid data";
-ALERT_OVERLAPPING_NOTIFICATIONS_MESSAGE="Your set notifications times overlap. Please review your settings.";
+ALERT_OK_BUTTON="Gerai";
+ALERT_NO_INTERNET_TITLE="Nėra interneto ryšio.";
+ALERT_NO_INTERNET_MESSAGE="Įsitikinkite, kad esate prisijungę prie interneto.";
+ALERT_FAILED_FORM_LOAD_TITLE="Klaida užkraunant apklausos duomenis.";
+ALERT_FAILED_FORM_LOAD_MESSAGE="Įsitikinkite, kad tokia apklausa egzistuoja.";
+ALERT_OVERLAPPING_NOTIFICATIONS_TITLE="Negaliojantys duomenys.";
+ALERT_OVERLAPPING_NOTIFICATIONS_MESSAGE="Jūsų nustatyti priminimų laikai persidengia. Peržiūrėkite savo nustatymus.";
 
 /* REMINDER NOTIFICATION */
 
-REMINDER_TITLE="Reminder: fill out the form";
-
+REMINDER_TITLE="Priminimas: užpildykite apklausą!";
 /* JOIN SURVEY VIEW */
-JOIN_VIEW_TITLE="Join a survey";
-JOIN_ID_PLACEHOLDER="Enter survey ID";
-JOIN_BUTTON_JOIN="Join";
+JOIN_VIEW_TITLE="Pradėti dalyvavimą tyrime";
+JOIN_ID_PLACEHOLDER="Įveskite apklausos kodą";
+JOIN_BUTTON_JOIN="Prisijungti";
 
 /* FORM VIEW */
-FORM_LABEL_NEXT_NOTIFICATION_TIME="Next notification at:";
-FORM_BUTTON_SETTINGS="Settings";
-FORM_BUTTON_FILL_SURVEY="Fill out the survey";
-FORM_BUTTON_REMIND="Remind me later";
-FORM_BUTTON_LEAVE="Leave survey";
+FORM_LABEL_NEXT_NOTIFICATION_TIME="Sekantis priminimas:";
+FORM_BUTTON_SETTINGS="Nustatymai";
+FORM_BUTTON_FILL_SURVEY="Pildyti apklausą";
+FORM_BUTTON_REMIND="Atidėti pildymą";
+FORM_BUTTON_LEAVE="Nutraukti dalyvavimą tyrime";
 
 /* SETTINGS VIEW*/
-SETTINGS_VIEW_TITLE="Settings";
-SETTINGS_LABEL_WEEKENDS="weekends";
-SETTINGS_LABEL_WORKING_DAYS="working days";
-SETTINGS_LABEL_EVERY_DAY="every day";
-SETTINGS_BUTTON_CANCEL="Cancel";
-SETTINGS_BUTTON_SAVE="Save";
+SETTINGS_VIEW_TITLE="Nustatymai";
+SETTINGS_LABEL_WEEKENDS="savaitgaliais";
+SETTINGS_LABEL_WORKING_DAYS="darbo dienomis";
+SETTINGS_LABEL_EVERY_DAY="kiekvieną dieną";
+SETTINGS_BUTTON_CANCEL="Atšaukti";
+SETTINGS_BUTTON_SAVE="Išsaugoti";
