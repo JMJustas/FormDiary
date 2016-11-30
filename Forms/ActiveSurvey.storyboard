@@ -37,9 +37,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next notification at: 22:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veW-wU-w0w">
-                                <rect key="frame" x="6" y="72" width="202" height="28"/>
+                                <rect key="frame" x="6" y="72" width="250" height="28"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="202" id="6zq-3K-fZN"/>
+                                    <constraint firstAttribute="width" constant="250" id="6zq-3K-fZN"/>
                                     <constraint firstAttribute="height" constant="28" id="GZa-j5-g6T"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
