@@ -20,7 +20,7 @@ ALERT_OVERLAPPING_NOTIFICATIONS_MESSAGE="Jūsų nustatyti priminimų laikai pers
 REMINDER_TITLE="Priminimas: užpildykite apklausą!";
 /* JOIN SURVEY VIEW */
 JOIN_VIEW_TITLE="Pradėti dalyvavimą tyrime";
-JOIN_ID_PLACEHOLDER="Įveskite apklausos kodą";
+JOIN_ID_PLACEHOLDER="Įveskite tyrimo kodą";
 JOIN_BUTTON_JOIN="Prisijungti";
 
 /* FORM VIEW */
